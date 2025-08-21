@@ -1,10 +1,12 @@
-sumslr = 0
+totcsd = 0
+totsolt = 0
 
 for i in range(4):
-    nome = str(input("\n\nDigite o nome dos funcionários : "))
-    slr = float(input(f"\n\nInsira o Salário de {nome} R$: "))
-    sumslr += slr
+    colab = str(input("\n\nDigite o nome do colaborador : ")) 
+    estcvl =input(f"\n\n O colaborador é solteiro ou casado : C - Casado \ S - Solteiro ").upper()
+    if estcvl == "S":
+        totsolt = totsolt + 1
+    else:
+        totcsd = totcsd + 1
 
-
-
-print(f"\n\nA soma dos salários dos amigos é R${sumslr}")
+print(f"O total de solteiros é {totsolt} e total de casados é {totcsd}")
