@@ -1,8 +1,3 @@
-fabrc = 0
-value = 0
-newvalue = 0
-
-
 for i in range (2):
     model = input("\n\n\nInsira o modelo do carro a ser avaliado: ")
     fabrc = int(input(f"\nInsira o ano de fabricação do {model} :"))
