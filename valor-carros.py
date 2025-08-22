@@ -1,4 +1,4 @@
-for i in range (2):
+for i in range (4):
     model = input("\n\n\nInsira o modelo do carro a ser avaliado: ")
     fabrc = int(input(f"\nInsira o ano de fabricação do {model} :"))
     value = float(input(f"\ninsira o Valor de {model} : "))

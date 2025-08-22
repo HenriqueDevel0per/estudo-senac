@@ -1,0 +1,13 @@
+melhorlancho = ""
+maisbarata = 1000.00  
+
+for i in range(4):
+    lanchonete = input("\nNome da lanchonete? : ")
+    precoxinha = float(input(f"\nInsira o preço da coxinha na {lanchonete} : "))
+
+    # se for o primeiro valor ou se o preço for menor que o atual
+    if precoxinha < maisbarata:
+        melhorlancho = lanchonete
+        maisbarata = precoxinha
+
+print(f"\n\nA coxinha mais barata está na {melhorlancho} custando R${maisbarata:.2f}")
