@@ -10,4 +10,4 @@ for i in range(2):
         maisalto = nome
         predio = altura
 
-print(f"\n\nO mais alto é o {nome} medindo {predio}")
+print(f"\n\nO mais alto é o {maisalto} medindo {predio}")
