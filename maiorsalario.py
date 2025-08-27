@@ -6,7 +6,7 @@ print("\n\n\n")
 
 while contador == "S":
     nome = input("\n\nInsira seu nome: ")
-    salario = float(input(f"\n\n{nome} Insira seu salário: "))
+    salario = float(input(f"\n\n{nome} Insira seu salário: R$"))
     if salario > maiorsalario:
         maiorsalario = salario
         rico = nome
