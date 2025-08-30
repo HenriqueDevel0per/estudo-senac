@@ -1,0 +1,22 @@
+import random
+import copy
+
+# 1. range – Criar um vetor com números de 0 a 9
+vetor = list(range(10))
+print("1. Vetor criado com range(10):", vetor)
+
+ #2. random – Embaralhar os elementos do vetor
+random.shuffle(vetor)
+print("2. Vetor embaralhado com random.shuffle():", vetor)
+
+ #3. copy – Fazer uma cópia do vetor embaralhado
+vetor_copia = copy.copy(vetor)
+print("3. Cópia do vetor com copy.copy():", vetor_copia)
+
+# 4. push – Adicionar um novo elemento no fim do vetor
+vetor.append(99)
+print("4. Após append(99):", vetor)
+
+# 5. asort (sort) – Ordenar os elementos em ordem crescente
+vetor.sort()
+print("5. Após sort():", vetor)
