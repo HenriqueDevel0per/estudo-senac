@@ -3,9 +3,6 @@ import copy
 
 # 1. range – Criar um vetor com números de 0 a 9
 vetor = list(range(10))
-print("1. Vetor criado com range(10):", vetor)
-
- #2. random – Embaralhar os elementos do vetor
 random.shuffle(vetor)
 print("2. Vetor embaralhado com random.shuffle():", vetor)
 

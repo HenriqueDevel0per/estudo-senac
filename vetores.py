@@ -1,15 +1,10 @@
-#frutas = ["morango","uva","laranja"]
-#print(frutas)
+nomes = []
+for y in range(5):
+    nome = input("Digite um nome: ")
+    nomes.append(nome)
 
-#for x in range(3):
-#    print(frutas[x])
+nomes.sort()
 
-
-carros = []
-for y in range(3):
-    carro = input("Digite modelo do carro: ")
-    carros.append(carro)
-
-print("Carros Cadastrados: ")
-for z in range (3):
-    print(carros [z]).sort()
+print("Nomes em Ordem: ")
+for z in range (5):
+    print(nomes [z])

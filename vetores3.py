@@ -1,14 +1,12 @@
-salarios = []   # lista vazia
+nomes = []   # lista vazia
 
 # 1) Coletar salários no vetor
 for i in range(3):
-    salario = float(input(f"Digite o {i+1}º salário: "))
-    salarios.append(salario)
+    nome = input(f"Digite o {i+1}º nomes: ")
+    nomes.append(nome)
 
-# 2) Função que calcula a média
-def media(lista):
-    print("📥 Recebi dentro da função:", lista)  # só pra mostrar
-    return sum(lista) / len(lista)
+(nomes).sort()
 
-# 3) Chamar a função e passar o vetor
-print("Média dos salários:", media(salarios))
+def ordenar_nomes(nomes):
+
+    return nomes_ordenados
