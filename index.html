@@ -1,0 +1,206 @@
+<py-script>
+import random
+from js import document, prompt
+
+class Conta:
+    def __init__(self, nome, conta, cpf):
+        self.nome = nome
+        self.conta = conta
+        self.cpf = cpf
+        self.saldo = random.randint(0, 10000)
+
+    def depositar(self, valor):
+        if valor > 0:
+            self.saldo += valor
+            return f"Depósito de R${valor:.2f} realizado com sucesso!"
+        else:
+            return "Valor de depósito inválido!"
+
+    def sacar(self, valor):
+        if valor > 0 and self.saldo >= valor:
+            self.saldo -= valor
+            return f"Saque de R${valor:.2f} realizado com sucesso!"
+        else:
+            return "Saldo insuficiente ou valor inválido!"
+
+    def ver_saldo(self):
+        return f"{self.nome}, seu saldo atual é de R${self.saldo:.2f}"
+
+conta = None
+
+def criar_conta():
+    global conta
+    nome = document.getElementById("nome").value
+    num_conta = document.getElementById("conta").value
+    cpf = document.getElementById("cpf").value
+    conta = Conta(nome, num_conta, cpf)
+    document.getElementById("cadastro").style.display = "none"
+    document.getElementById("acoes").style.display = "block"
+    document.getElementById("saldo").innerText = conta.ver_saldo()
+
+def depositar():
+    global conta
+    valor = float(prompt("Qual valor deseja depositar?"))
+    msg = conta.depositar(valor)
+    document.getElementById("mensagem").innerText = msg
+    document.getElementById("saldo").innerText = conta.ver_saldo()
+
+def sacar():
+    global conta
+    valor = float(prompt("Qual valor deseja sacar?"))
+    msg = conta.sacar(valor)
+    document.getElementById("mensagem").innerText = msg
+    document.getElementById("saldo").innerText = conta.ver_saldo()
+</py-script>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Conta Bancária com PyScript</title>
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width: 350px;
+      text-align: center;
+    }
+    h1 {
+      color: #820ad1;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+    .btn-primary {
+      background: #820ad1;
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #6d08ab;
+    }
+    .btn-secondary {
+      background: #e0e0e0;
+      color: #333;
+    }
+    .btn-secondary:hover {
+      background: #ccc;
+    }
+    #saldo {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #444;
+    }
+    #mensagem {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Banco Digital</h1>
+
+    <div id="cadastro">
+      <input id="nome" type="text" placeholder="Nome">
+      <input id="conta" type="text" placeholder="Conta">
+      <input id="cpf" type="text" placeholder="CPF">
+      <button class="btn-primary" py-click="criar_conta()">Criar Conta</button>
+    </div>
+
+    <div id="acoes" style="display:none;">
+      <p id="saldo"></p>
+      <button class="btn-primary" py-click="depositar()">Depositar</button>
+      <button class="btn-secondary" py-click="sacar()">Sacar</button>
+      <p id="mensagem"></p>
+    </div>
+  </div>
+
+  <py-script>
+import random
+from js import document, prompt
+
+class Conta:
+    def __init__(self, nome, conta, cpf):
+        self.nome = nome
+        self.conta = conta
+        self.cpf = cpf
+        self.saldo = random.randint(0, 10000)
+
+    def depositar(self, valor):
+        if valor > 0:
+            self.saldo += valor
+            return f"Depósito de R${valor:.2f} realizado com sucesso!"
+        else:
+            return "Valor de depósito inválido!"
+
+    def sacar(self, valor):
+        if valor > 0 and self.saldo >= valor:
+            self.saldo -= valor
+            return f"Saque de R${valor:.2f} realizado com sucesso!"
+        else:
+            return "Saldo insuficiente ou valor inválido!"
+
+    def ver_saldo(self):
+        return f"{self.nome}, seu saldo atual é de R${self.saldo:.2f}"
+
+conta = None
+
+def criar_conta():
+    global conta
+    nome = document.getElementById("nome").value
+    num_conta = document.getElementById("conta").value
+    cpf = document.getElementById("cpf").value
+
+    conta = Conta(nome, num_conta, cpf)
+    document.getElementById("cadastro").style.display = "none"
+    document.getElementById("acoes").style.display = "block"
+    document.getElementById("saldo").innerText = conta.ver_saldo()
+
+def depositar():
+    global conta
+    valor = float(prompt("Qual valor deseja depositar?"))
+    msg = conta.depositar(valor)
+    document.getElementById("mensagem").innerText = msg
+    document.getElementById("saldo").innerText = conta.ver_saldo()
+
+def sacar():
+    global conta
+    valor = float(prompt("Qual valor deseja sacar?"))
+    msg = conta.sacar(valor)
+    document.getElementById("mensagem").innerText = msg
+    document.getElementById("saldo").innerText = conta.ver_saldo()
+  </py-script>
+</body>
+</html>
