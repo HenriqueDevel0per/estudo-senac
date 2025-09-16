@@ -1,0 +1,115 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body */
+body {
+    background-color: #111;
+    color: #f4f4f4;
+    display: flex;
+    justify-content: center;   /* centraliza horizontalmente */
+    align-items: center;       /* centraliza verticalmente */
+    min-height: 100vh;         /* garante altura total da tela */
+    padding: 20px;
+    flex-direction: column;    /* mantém o h1 acima do form */
+}
+
+h1 {
+    text-align: center;       /* centraliza horizontalmente */
+    margin-bottom: 30px;      /* espaço entre o título e o formulário */
+    font-size: 28px;
+    color: #ff4500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Formulário */
+form {
+    background-color: #1c1c1c; /* painel escuro */
+    height: auto;
+    text-align: center;
+    padding: 30px 25px;
+    border-radius: 12px;
+    align-items: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #ddd;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+/* Inputs, select e textarea */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 2px solid #333;
+    border-radius: 6px;
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    transition: border 0.3s, background 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #ff4500;
+    background-color: #1a1a1a;
+    outline: none;
+}
+
+/* Textarea */
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Botões */
+button {
+    padding: 14px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-submit {
+    background-color: #ff4500;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #e03e00;
+}
+
+.btn-reset {
+    background-color: #555;
+    color: #fff;
+}
+
+.btn-reset:hover {
+    background-color: #777;
+}

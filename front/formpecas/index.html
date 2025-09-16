@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário - Loja Motorique</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Formulário de Compra - Motorique</h1>
+
+    <form id="formCompra" action="processa_pedido.php" method="POST" enctype="application/x-www-form-urlencoded">
+
+        <!-- Dados do cliente -->
+        <label for="nome">Nome Completo:</label>
+        <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" 
+               pattern="\(\d{2}\)\s\d{5}-\d{4}" title="Formato: (99) 99999-9999" required>
+
+        <!-- CEP e endereço -->
+        <label for="cep">CEP:</label>
+        <input type="text" id="cep" name="cep" placeholder="Digite seu CEP" maxlength="8" required>
+        <button type="button" onclick="buscarCEP()">Buscar CEP</button>
+
+        <label for="rua">Rua:</label>
+        <input type="text" id="rua" name="rua" readonly>
+
+        <label for="bairro">Bairro:</label>
+        <input type="text" id="bairro" name="bairro" readonly>
+
+        <label for="cidade">Cidade:</label>
+        <input type="text" id="cidade" name="cidade" readonly>
+
+        <label for="estado">Estado:</label>
+        <input type="text" id="estado" name="estado" readonly>
+
+        <script>
+            function buscarCEP() {
+                let cep = document.getElementById("cep").value.replace(/\D/g, '');
+                if (cep.length !== 8) { 
+                    alert("CEP inválido! Digite 8 números."); 
+                    return; 
+                }
+
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.erro) {
+                            alert("CEP não encontrado.");
+                            ["rua","bairro","cidade","estado"].forEach(id => document.getElementById(id).value = "");
+                            return;
+                        }
+
+                        document.getElementById("rua").value = data.logradouro;
+                        document.getElementById("bairro").value = data.bairro;
+                        document.getElementById("cidade").value = data.localidade;
+                        document.getElementById("estado").value = data.uf;
+                    })
+                    .catch(() => alert("Erro ao buscar CEP."));
+            }
+        </script>
+
+        <!-- Carrinho de Compras -->
+        <h2>Adicionar Itens ao Carrinho</h2>
+
+        <label for="pecaItem">Peça:</label>
+        <select id="pecaItem">
+            <option value="" disabled selected>Selecione uma peça</option>
+            <option value="corrente">Corrente</option>
+            <option value="pneu">Pneu</option>
+            <option value="freio">Freio</option>
+            <option value="embreagem">Embreagem</option>
+            <option value="velas">Velas</option>
+            <option value="farol">Farol</option>
+            <option value="retrovisor">Retrovisor</option>
+        </select>
+
+        <label for="modeloItem">Modelo:</label>
+        <input type="text" id="modeloItem" placeholder="Ex: Yamaha R3">
+
+        <label for="anoItem">Ano de Fabricação:</label>
+        <input type="number" id="anoItem" min="1990" max="2030" placeholder="Ex: 2020">
+
+        <label for="quantidadeItem">Quantidade:</label>
+        <input type="number" id="quantidadeItem" min="1" value="1">
+
+        <button type="button" onclick="adicionarItem()">Adicionar ao Carrinho</button>
+
+        <h3>Carrinho de Compras</h3>
+        <table id="tabelaCarrinho" border="1" style="width:100%; margin-top:10px;">
+            <thead>
+                <tr>
+                    <th>Peça</th>
+                    <th>Modelo</th>
+                    <th>Ano</th>
+                    <th>Quantidade</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <label for="cep">CEP:</label>
+<input type="text" id="cep" name="cep" placeholder="Digite o CEP" pattern="\d{5}-?\d{3}" title="Formato: 00000-000" required>
+<button type="button" onclick="buscarCEP()">Buscar Endereço</button>
+
+        <div id="itensOcultos"></div>
+
+        <script>
+            let carrinho = [];
+
+            function adicionarItem() {
+                const peca = document.getElementById("pecaItem").value;
+                const modelo = document.getElementById("modeloItem").value.trim();
+                const ano = document.getElementById("anoItem").value;
+                const quantidade = document.getElementById("quantidadeItem").value;
+
+                if (!peca || !modelo || !ano || quantidade < 1) {
+                    alert("Preencha todos os campos corretamente.");
+                    return;
+                }
+
+                carrinho.push({ peca, modelo, ano, quantidade });
+                atualizarCarrinho();
+                limparCamposItem();
+            }
+
+            function atualizarCarrinho() {
+                const tbody = document.querySelector("#tabelaCarrinho tbody");
+                tbody.innerHTML = "";
+                const itensOcultos = document.getElementById("itensOcultos");
+                itensOcultos.innerHTML = "";
+
+                carrinho.forEach((item, index) => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${item.peca}</td>
+                        <td>${item.modelo}</td>
+                        <td>${item.ano}</td>
+                        <td>${item.quantidade}</td>
+                        <td><button type="button" onclick="removerItem(${index})">Remover</button></td>
+                    `;
+                    tbody.appendChild(tr);
+
+                    // Campos ocultos para envio
+                    for (const key in item) {
+                        const input = document.createElement("input");
+                        input.type = "hidden";
+                        input.name = `itens[${index}][${key}]`;
+                        input.value = item[key];
+                        itensOcultos.appendChild(input);
+                    }
+                });
+            }
+
+            function removerItem(index) {
+                carrinho.splice(index, 1);
+                atualizarCarrinho();
+            }
+
+            function limparCamposItem() {
+                document.getElementById("pecaItem").selectedIndex = 0;
+                document.getElementById("modeloItem").value = "";
+                document.getElementById("anoItem").value = "";
+                document.getElementById("quantidadeItem").value = 1;
+            }
+        </script>
+
+        <!-- Observações -->
+        <label for="observacoes">Observações:</label>
+        <textarea id="observacoes" name="observacoes" placeholder="Detalhes adicionais"></textarea>
+
+        <!-- Botões -->
+        <button type="submit" class="btn-submit">Enviar Pedido</button>
+        <button type="reset" class="btn-reset">Limpar Formulário</button>
+
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário - Loja de Tênis Esportivos</title>
+    <!-- Importando o CSS externo -->
+    <link rel="stylesheet" href="style_ten3.css">
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_ApprovalStatus msdt:dt="string">0</mso:_ApprovalStatus>
+<mso:_ApprovalAssignedTo msdt:dt="string"></mso:_ApprovalAssignedTo>
+<mso:_ApprovalRespondedBy msdt:dt="string"></mso:_ApprovalRespondedBy>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+
+    <h1>Formulário de Compra - Loja de Tênis</h1>
+
+    <form id="formTenis" action="processa_pedido.php" method="POST" target="_self" enctype="multipart/form-data">
+        
+        <!-- Nome -->
+        <label for="nome">Nome Completo:</label>
+        <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+
+        <!-- Email -->
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+
+        <!-- Telefone -->
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" 
+               pattern="\(\d{2}\)\s\d{5}-\d{4}" 
+               title="Formato esperado: (99) 99999-9999" required>
+
+        <!-- Idade -->
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" name="idade" min="12" max="100" placeholder="Digite sua idade" required>
+
+        <!-- Modelo de Tênis -->
+        <label for="modelo">Modelo de Tênis:</label>
+        <select id="modelo" name="modelo" required>
+            <option value="" disabled selected>Selecione um modelo</option>
+            <option value="airmax">Nike Air Max</option>
+            <option value="ultraboost">Adidas Ultraboost</option>
+            <option value="gelkayano">Asics Gel-Kayano</option>
+            <option value="pegasus">Nike Pegasus</option>
+            <option value="suede">Puma Suede</option>
+        </select>
+
+        <!-- Número do Calçado -->
+        <label for="numero">Número do Calçado:</label>
+        <input type="number" id="numero" name="numero" min="34" max="48" required placeholder="Ex: 42">
+
+        <!-- Campo somente leitura -->
+        <label for="promocao">Promoção Atual:</label>
+        <input type="text" id="promocao" name="promocao" value="Frete grátis para todo o Brasil!" readonly>
+
+        <!-- Gênero (radio) -->
+        <label>Gênero:</label>
+        <div class="opcoes">
+            <input type="radio" id="masculino" name="genero" value="masculino" required>
+            <label for="masculino">Masculino</label>
+
+            <input type="radio" id="feminino" name="genero" value="feminino">
+            <label for="feminino">Feminino</label>
+
+            <input type="radio" id="outro" name="genero" value="outro">
+            <label for="outro">Outro</label>
+        </div>
+
+        <!-- Preferências (checkbox) -->
+        <label>Preferências:</label>
+        <div class="opcoes">
+            <input type="checkbox" id="corrida" name="preferencias" value="corrida">
+            <label for="corrida">Corrida</label>
+
+            <input type="checkbox" id="casual" name="preferencias" value="casual">
+            <label for="casual">Casual</label>
+
+            <input type="checkbox" id="academia" name="preferencias" value="academia">
+            <label for="academia">Academia</label>
+        </div>
+
+        <!-- Cor preferida -->
+        <label for="cor">Escolha sua cor preferida:</label>
+        <input type="color" id="cor" name="cor" value="#0000ff">
+
+        <!-- Upload de arquivo -->
+        <label for="comprovante">Comprovante de Pagamento:</label>
+        <input type="file" id="comprovante" name="comprovante" accept=".jpg,.png,.pdf">
+
+        <!-- Observações -->
+        <label for="observacoes">Observações:</label>
+        <textarea id="observacoes" name="observacoes" rows="4" placeholder="Digite aqui alguma observação..."></textarea>
+
+        <!-- Botões -->
+        <button type="submit" class="btn-submit">Enviar Pedido</button>
+        <button type="reset" class="btn-reset">Limpar Formulário</button>
+    </form>
+
+    <!-- Script JS -->
+    <script>
+        // Captura do formulário
+        const form = document.getElementById("formTenis");
+
+        // Evento ao enviar
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // evita envio real para demonstrar o JS
+            alert("📦 Pedido enviado com sucesso! Obrigado pela compra.");
+        });
+
+        // Evento de input na idade
+        document.getElementById("idade").addEventListener("input", function() {
+            let idadeStr = this.value; // sempre vem como string
+            let idadeNum = parseInt(idadeStr);
+
+            console.log("Idade (string):", idadeStr, typeof idadeStr);
+            console.log("Idade (parseInt):", idadeNum, typeof idadeNum);
+
+            if (!isNaN(idadeNum) && idadeNum < 18) {
+                alert("⚠️ Atenção: apenas maiores de 18 anos podem comprar sozinhos!");
+            }
+        });
+
+        // Evento de input no número do calçado
+        document.getElementById("numero").addEventListener("input", function() {
+            let numeroStr = this.value; // string do input
+            let numeroFloat = parseFloat(numeroStr);
+
+            console.log("Número do calçado (string):", numeroStr, typeof numeroStr);
+            console.log("Número do calçado (parseFloat):", numeroFloat, typeof numeroFloat);
+
+            if (!isNaN(numeroFloat) && numeroFloat < 36) {
+                alert("👟 Tamanhos abaixo de 36 podem ter estoque limitado!");
+            }
+        });
+    </script>
+</body>
+</html>

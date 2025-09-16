@@ -1,0 +1,217 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body */
+body {
+    background-image: url('fundo-2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: auto;
+    background-color: #121212; /* preto quase total */
+    color: #fff;
+    display: flex;
+    justify-content: center; /* centraliza horizontalmente */
+    align-items: center;     /* centraliza verticalmente */
+    min-height: 100vh;
+    padding: 20px;
+    flex-direction: column;
+}
+
+/* Título */
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
+    text-align: center;
+    background-color: #2C2C2C;
+    margin-bottom: 20px;
+    font-size: 50px;
+    color: #f8f8f8; /* verde Uber Eats */
+    font-weight: bold;
+}
+
+/* Formulário */
+form {
+    background-color: #1E1E1E; /* painel escuro */
+    padding: 30px 25px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    margin: auto; /* garante centralização horizontal */
+}
+.table-responsive {
+    margin: 0 auto;
+}
+
+/* Subtítulos */
+h2, h3 {
+    color: #00C853;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #ddd;
+    font-size: 14px;
+}
+
+/* Inputs e select */
+input[type="text"],
+input[type="tel"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: #2C2C2C;
+    color: #fff;
+    font-size: 14px;
+    transition: border 0.3s, background 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #00C853;
+    background-color: #3a3a3a;
+    outline: none;
+}
+
+/* Textarea */
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Botões */
+button {
+    padding: 14px 20px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+/* Botões de ação */
+.btn-submit {
+    background-color: #00C853; /* verde Uber Eats */
+    color: #fff;
+    margin-right: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #00e676;
+}
+
+.btn-reset {
+    background-color: #555;
+    color: #fff;
+}
+
+.btn-reset:hover {
+    background-color: #777;
+}
+
+/* Tabela carrinho */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+    font-size: 14px;
+}
+
+table th {
+    background-color: #222;
+    color: #00C853;
+}
+
+/* Checkbox dos ingredientes */
+#ingredientesBox label {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+/* Radios de pagamento */
+input[type="radio"] {
+    margin-right: 8px;
+}
+
+/* Estilo hover para botões remover na tabela */
+table button {
+    background-color: #FF6D00; /* laranja */
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+}
+
+table button:hover {
+    background-color: #FF9100;
+}
+
+/* Responsivo */
+@media (max-width: 640px) {
+    form {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 28px;
+    }
+    table th, table td {
+        font-size: 12px;
+    }
+    button {
+        font-size: 14px;
+    }
+}
+
+/* Botões animados */
+.animate-btn {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.animate-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* Inputs focados */
+input:focus, select:focus, textarea:focus {
+    border-color: #00C853;
+    box-shadow: 0 0 5px #00C853;
+}
+
+/* Tabela carrinho hover */
+table.table-hover tbody tr:hover {
+    background-color: rgba(0,200,83,0.2);
+}
+
+/* Scroll responsivo */
+.table-responsive {
+    max-height: 300px;
+    overflow-y: auto;
+}

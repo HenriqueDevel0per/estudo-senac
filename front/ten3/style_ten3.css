@@ -1,0 +1,103 @@
+/* Estilo geral */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    padding: 20px;
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Formulário */
+form {
+    max-width: 650px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+/* Rótulos */
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* Campos de entrada, select e textarea */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+/*input[type="color"],*/
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Cor (não ocupar 100%) */
+input[type="color"] {
+    width: 60px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
+
+/* Radio e Checkbox */
+.opcoes {
+    margin-top: 8px;
+}
+.opcoes input {
+    margin-right: 5px;
+}
+.opcoes label {
+    display: inline-block;
+    margin-right: 15px;
+    font-weight: normal;
+}
+
+/* Textarea */
+textarea {
+    resize: vertical;
+}
+
+/* Botões */
+button {
+    width: 48%;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+}
+
+/* Botão Enviar */
+.btn-submit {
+    background-color: #28a745;
+    color: #fff;
+}
+
+/* Botão Reset */
+.btn-reset {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Ajustando os botões lado a lado */
+form button:first-of-type {
+    margin-right: 4%;
+}
