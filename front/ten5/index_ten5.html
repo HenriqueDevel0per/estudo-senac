@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FootStep Runner Store</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="bg-dark text-white">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-lg">
+            <div class="container">
+                <a class="navbar-brand fw-bold text-uppercase" href="#">
+                    <h1 class="h3 mb-0 me-2 text-warning">👣FootStep Runner Store👣</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Início</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#produtos">Produtos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contato">Contato</a>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-warning d-flex align-items-center me-2">
+                        <i class="bi bi-cart4 me-2"></i>
+                        Carrinho
+                        <span class="badge bg-danger ms-2">0</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero-section d-flex align-items-center text-center text-white">
+        <div class="container">
+            <h2 class="display-2 fw-bold animate-text">ULTRA PERFORMANCE.</h2>
+            <h3 class="display-5 fw-light animate-text">SUA PRÓXIMA CORRIDA COMEÇA AQUI.</h3>
+        </div>
+    </section>
+
+    <main class="container my-5" id="produtos">
+        <h2 class="text-center mb-5 display-4 fw-bold text-dark text-uppercase">Nossos Modelos</h2>
+        <div class="row g-4 justify-content-center">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden product-card">
+                    <img src="https://imgnike-a.akamaihd.net/1920x1920/027322IDA1.jpg" class="card-img-top product-image" alt="Tênis Nike Air Exceee">
+                    <div class="card-body d-flex flex-column align-items-center text-center">
+                        <h5 class="card-title fw-semibold text-truncate w-100">Tênis Nike Air Exceee</h5>
+                        <p class="card-text text-success fw-bold fs-4 my-2">R$ 399,90</p>
+                        <form class="w-100">
+                            <div class="mb-3">
+                                <label for="tamanho1" class="form-label text-start d-block">Tamanho</label>
+                                <select class="form-select form-select-sm" id="tamanho1" aria-label="Selecione o tamanho">
+                                    <option selected disabled>Escolha o tamanho</option>
+                                    <option value="38">38</option>
+                                    <option value="39">39</option>
+                                    <option value="40">40</option>
+                                    <option value="41">41</option>
+                                    <option value="42">42</option>
+                                    <option value="43">43</option>
+                                    <option value="43">44</option>
+                                    <option value="43">45</option>
+                                    <option value="43">46</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-warning w-100 mt-auto fw-bold text-uppercase"><i class="bi bi-cart-plus me-2"></i> Comprar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden product-card">
+                    <img src="https://static.netshoes.com.br/produtos/tenis-adidas-run-70-20-masculino/26/FB9-8954-026/FB9-8954-026_zoom1.jpg?ts=1730919748&ims=1088x" class="card-img-top product-image" alt="Tênis Adidas Run">
+                    <div class="card-body d-flex flex-column align-items-center text-center">
+                        <h5 class="card-title fw-semibold text-truncate w-100">Tênis Adidas Run</h5>
+                        <p class="card-text text-success fw-bold fs-4 my-2">R$ 349,90</p>
+                        <form class="w-100">
+                            <div class="mb-3">
+                                <label for="tamanho2" class="form-label text-start d-block">Tamanho</label>
+                                <select class="form-select form-select-sm" id="tamanho2" aria-label="Selecione o tamanho">
+                                    <option selected disabled>Escolha o tamanho</option>
+                                    <option value="38">38</option>
+                                    <option value="39">39</option>
+                                    <option value="40">40</option>
+                                    <option value="41">41</option>
+                                    <option value="42">42</option>
+                                    <option value="43">43</option>
+                                    <option value="43">44</option>
+                                    <option value="43">45</option>
+                                    <option value="43">46</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-warning w-100 mt-auto fw-bold text-uppercase"><i class="bi bi-cart-plus me-2"></i> Comprar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden product-card">
+                    <img src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa/global/310779/04/sv01/fnd/BRA/w/1000/h/1000/fmt/png" class="card-img-top product-image" alt="Tênis Puma Scend Pro 2 Masculino">
+                    <div class="card-body d-flex flex-column align-items-center text-center">
+                        <h5 class="card-title fw-semibold text-truncate w-100">Tênis Puma Scend Pro 2 Masculino</h5>
+                        <p class="card-text text-success fw-bold fs-4 my-2">R$ 349,90</p>
+                        <form class="w-100">
+                            <div class="mb-3">
+                                <label for="tamanho3" class="form-label text-start d-block">Tamanho</label>
+                                <select class="form-select form-select-sm" id="tamanho3" aria-label="Selecione o tamanho">
+                                    <option selected disabled>Escolha o tamanho</option>
+                                    <option value="38">38</option>
+                                    <option value="39">39</option>
+                                    <option value="40">40</option>
+                                    <option value="41">41</option>
+                                    <option value="42">42</option>
+                                    <option value="43">43</option>
+                                    <option value="43">44</option>
+                                    <option value="43">45</option>
+                                    <option value="43">46</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-warning w-100 mt-auto fw-bold text-uppercase"><i class="bi bi-cart-plus me-2"></i> Comprar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden product-card">
+                    <img src="https://imgnike-a.akamaihd.net/1920x1920/02728518A1.jpg" class="card-img-top product-image" alt="Tênis Nike Revolution 7">
+                    <div class="card-body d-flex flex-column align-items-center text-center">
+                        <h5 class="card-title fw-semibold text-truncate w-100">Tênis Nike Revolution 7</h5>
+                        <p class="card-text text-success fw-bold fs-4 my-2">R$ 299,90</p>
+                        <form class="w-100">
+                            <div class="mb-3">
+                                <label for="tamanho4" class="form-label text-start d-block">Tamanho</label>
+                                <select class="form-select form-select-sm" id="tamanho4" aria-label="Selecione o tamanho">
+                                    <option selected disabled>Escolha o tamanho</option>
+                                    <option value="38">38</option>
+                                    <option value="39">39</option>
+                                    <option value="40">40</option>
+                                    <option value="41">41</option>
+                                    <option value="42">42</option>
+                                    <option value="43">43</option>
+                                    <option value="43">44</option>
+                                    <option value="43">45</option>
+                                    <option value="43">46</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-warning w-100 mt-auto fw-bold text-uppercase"><i class="bi bi-cart-plus me-2"></i> Comprar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4" id="contato">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 FootStep Runner Store. Todos os direitos reservados.</p>
+            <div class="mt-2">
+                <a href="#" class="text-white mx-2"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="text-white mx-2"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-white mx-2"><i class="bi bi-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

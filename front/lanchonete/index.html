@@ -1,253 +1,457 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedido Online - Lanchonete</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Online - Lanchonete</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Pedido Online - Lanchonete</h1>
+    <div class="main-content">
+        <h1>JORGIN LANCHES</h1>
+    
+        <form id="formPedido" action="processa_pedido.php" method="POST" enctype="application/x-www-form-urlencoded">
 
-    <form id="formPedido" action="processa_pedido.php" method="POST" enctype="application/x-www-form-urlencoded">
+            <fieldset class="form-group">
+                <legend>Dados do Cliente</legend>
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
 
-        <!-- Dados do cliente -->
-        <label for="nome">Nome Completo:</label>
-        <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(21) 99999-9999" 
+                       pattern="\(\d{2}\)\s\d{5}-\d{4}" title="Formato: (21) 99999-9999" required>
+            </fieldset>
 
-        <label for="telefone">Telefone:</label>
-        <input type="tel" id="telefone" name="telefone" placeholder="21 999999999" 
-               pattern="\(\d{2}\)\s\d{5}-\d{4}" title="Formato: 21 999999999" required>
+            <fieldset class="form-group">
+                <legend>Endereço de Entrega</legend>
+                <label for="cep">CEP:</label>
+                <div class="input-com-botao">
+                    <input type="text" id="cep" name="cep" placeholder="Digite seu CEP" maxlength="8" required>
+                    <button type="button" class="btn-cep" onclick="buscarCEP()">Buscar</button>
+                </div>
+                
+                <label for="endereco">Endereço:</label>
+                <input type="text" id="endereco" name="endereco" placeholder="Rua, bairro, cidade" required>
 
-        <!-- CEP e endereço -->
-        <label for="cep">CEP:</label>
-        <input type="text" id="cep" name="cep" placeholder="Digite seu CEP" maxlength="8" required>
-        <button type="button" onclick="buscarCEP()">Buscar CEP</button>
+                <label for="numero">Nº Residência:</label>
+                <input type="number" id="numero" name="numero" placeholder="999" required>
 
-        <label for="endereco">Endereço de Entrega:</label>
-        <input type="text" id="endereco" name="endereco" placeholder="Rua, número, bairro" required>
+                <label for="complemento">Complemento:</label>
+                <input type="text" id="complemento" name="complemento" placeholder="Ex: Lote 2, Apto 101">
+            </fieldset>
 
-        <label for="numero">Nº residencia:</label>
-        <input type="number" id="número" name="número" placeholder="999" required>
+            <fieldset class="form-group">
+                <legend>Adicionar Itens ao Pedido</legend>
 
-        <label for="complemento">Complemento:</label>
-        <input type="text" id="complemento" name="complemento" placeholder="ex:Lote2" required>
+                <label for="produto">Produto:</label>
+                <select id="produto">
+                    <option value="" disabled selected>Selecione um item</option>
+                    <option value="Pizza">🍕 Pizza</option>
+                    <option value="Hamburguer">🍔 Hambúrguer</option>
+                    <option value="Pastel Tradicional">🥟 Pastel Tradicional</option>
+                    <option value="Pastel Tudo Dentro">🥟 Pastel "Com Tudo Dentro"</option>
+                    <option value="Refrigerante">🥤 Refrigerante</option>
+                    <option value="Guaracamp">🥤 Guaracamp</option>
+                </select>
 
-        <!-- Carrinho de Compras -->
-        <h2>Adicionar Itens ao Pedido</h2>
+                <div id="opcoesPizza" class="item-opcoes" style="display:none;">
+                    <h4>Ingredientes base: <span class="ingredientes-base">Massa, Molho de tomate, Mussarela</span></h4>
+                    <div class="sabor-selection">
+                        <label>Selecione 1º Sabor:</label>
+                        <select id="saborPizza1"></select>
+                        <label>Selecione 2º Sabor (opcional):</label>
+                        <select id="saborPizza2"></select>
+                    </div>
+                </div>
 
-        <label for="produto">Produto:</label>
-        <select id="produto">
-            <option value="" disabled selected>Selecione um item</option>
-            <option value="Pizza">🍕 Pizza</option>
-            <option value="Hamburguer">🍔 Hambúrguer</option>
-            <option value="Pastel">🥟 Pastel</option>
-            <option value="Refrigerante">🥤 Refrigerante</option>
-        </select>
+                <div id="opcoesHamburguer" class="item-opcoes" style="display:none;">
+                    <label>Ingredientes:</label>
+                    <div id="ingredientesHamburguer" class="checkbox-group"></div>
+                    <label>Molhos:</label>
+                    <div id="molhosHamburguer" class="checkbox-group"></div>
+                </div>
 
-        <!-- Ingredientes dinâmicos -->
-        <div id="ingredientesBox" style="margin:10px 0; display:none;">
-            <label>Ingredientes:</label><br>
-            <div id="listaIngredientes"></div>
-        </div>
+                <div id="opcoesPastel" class="item-opcoes" style="display:none;">
+                    <div id="pastelTradicional" style="display:none;">
+                        <label>Sabor (Escolha 1):</label>
+                        <div id="saboresPastelTradicional" class="radio-group"></div>
+                    </div>
+                    <div id="pastelTudoDentro" style="display:none;">
+                        <label>Ingredientes (até 10):</label>
+                        <div id="ingredientesPastel" class="checkbox-group"></div>
+                    </div>
+                </div>
 
-        <!-- Refrigerantes -->
-        <div id="refrigerantesBox" style="margin:10px 0; display:none;">
-            <label for="saborRefri">Sabor do Refrigerante:</label>
-            <select id="saborRefri">
-                <option value="Coca-Cola">Coca-Cola</option>
-                <option value="Guaraná">Guaraná</option>
-                <option value="Fanta Laranja">Fanta Laranja</option>
-                <option value="Sprite">Sprite</option>
-            </select>
-        </div>
+                <div id="opcoesRefrigerante" class="item-opcoes" style="display:none;">
+                    <label for="tamanhoRefri">Tamanho:</label>
+                    <select id="tamanhoRefri"></select>
+                    <label for="saborRefri">Sabor:</label>
+                    <select id="saborRefri"></select>
+                </div>
+                
+                <div id="opcoesGuaracamp" class="item-opcoes" style="display:none;">
+                    <label>Este produto não tem opções de personalização.</label>
+                </div>
 
-        <label for="sabor">Sabor/Descrição:</label>
-        <input type="text" id="sabor" placeholder="Ex: Calabresa, X-Bacon, Frango c/ queijo">
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidade" min="1" value="1">
 
-        <label for="quantidade">Quantidade:</label>
-        <input type="number" id="quantidade" min="1" value="1">
+                <button type="button" class="btn-adicionar" onclick="adicionarItem()">Adicionar ao Pedido</button>
 
-        <button type="button" onclick="adicionarItem()">Adicionar ao Pedido</button>
+                <h3>Carrinho de Compras</h3>
+                <div class="table-responsive">
+                    <table id="tabelaCarrinho" class="table-hover">
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Descrição</th>
+                                <th>Qtd.</th>
+                                <th>Preço Unit.</th>
+                                <th>Total</th>
+                                <th>Ações</th>
+                            </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="itensOcultos"></div>
+        </fieldset>
 
-        <h3>Carrinho de Compras</h3>
-        <table id="tabelaCarrinho" border="1" style="width:100%; margin-top:10px;">
-            <thead>
-                <tr>
-                    <th>Produto</th>
-                    <th>Ingredientes/Sabor</th>
-                    <th>Quantidade</th>
-                    <th>Preço Unit.</th>
-                    <th>Total</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <fieldset class="form-group">
+            <legend>Detalhes Adicionais</legend>
+            <label for="observacoes">Observações:</label>
+            <textarea id="observacoes" name="observacoes" placeholder="Ex: Sem cebola, cortar em 8 pedaços..."></textarea>
+        </fieldset>
 
-        <div id="itensOcultos"></div>
+        <fieldset class="form-group">
+            <legend>Pagamento</legend>
+            <label>Forma de pagamento:</label>
+            <div class="radio-group">
+                <label><input type="radio" name="pagamento" value="VR" required> VR</label>
+                <label><input type="radio" name="pagamento" value="Débito"> Débito</label>
+                <label><input type="radio" name="pagamento" value="Crédito"> Crédito</label>
+                <label><input type="radio" name="pagamento" value="Pix"> Pix</label>
+            </div>
+            
+            <label>Tipo de pagamento:</label>
+            <div class="radio-group">
+                <label><input type="radio" name="tipo_pagamento" value="Online" required> Online</label>
+                <label><input type="radio" name="tipo_pagamento" value="Na Entrega"> Na Entrega</label>
+            </div>
+        </fieldset>
 
-        <script>
-            let carrinho = [];
+        <div class="botoes-form">
+            <button type="submit" class="btn-submit animate-btn">Enviar Pedido</button>
+            <button type="reset" class="btn-reset animate-btn">Limpar Formulário</button>
+        </div>
+    </form>
+    </div>
 
-            // Ingredientes pré-definidos
-            const ingredientes = {
-                "Pizza": ["Massa", "Molho de tomate da casa", "Queijo", "Orégano", "Calabresa", "Frango", "Presunto", "Milho", "Bacon", "Azeitona"],
-                "Hamburguer": ["Pão", "Carne", "Queijo", "Alface", "Tomate", "Bacon", "Maionese"],
-                "Pastel": ["Queijo", "Carne", "Frango", "Calabresa", "Palmito", "Chocolate"]
-            };
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const carrinho = [];
+            
+            // Dados dos produtos
+            const produtos = {
+                "Pizza": {
+                    sabores: {
+                        "Calabresa": {
+                            nome: "Calabresa",
+                            ingredientes: "linguiça calabresa fatiada, cebola e azeitonas"
+                        },
+                        "Frango com Catupiry": {
+                            nome: "Frango com Catupiry",
+                            ingredientes: "frango desfiado e temperado com catupiry cremoso"
+                        },
+                        "Portuguesa": {
+                            nome: "Portuguesa",
+                            ingredientes: "presunto, ovo cozido, cebola, azeitona e pimentão"
+                        },
+                        "Quatro Queijos": {
+                            nome: "Quatro Queijos",
+                            ingredientes: "gorgonzola, parmesão, provolone e mussarela"
+                        },
+                        "Marguerita": {
+                            nome: "Marguerita",
+                            ingredientes: "rodelas de tomate e manjericão fresco"
+                        },
+                        "Bacon": {
+                            nome: "Bacon",
+                            ingredientes: "bacon crocante e milho"
+                        }
+                    },
+                    ingredientesBase: "Massa, Molho de tomate da casa, Mussarela"
+                },
+                "Hamburguer": {
+                    ingredientes: ["Pão", "Carne", "Queijo", "Alface", "Tomate", "Bacon", "Cebola Roxa"],
+                    molhos: ["Ketchup", "Maionese", "Mostarda", "Barbecue", "Maionese Verde", "Billy Jack"]
+                },
+                "Pastel Tradicional": {
+                    sabores: ["Queijo", "Carne", "Frango", "Calabresa", "Palmito", "Chocolate"]
+                },
+                "Pastel Tudo Dentro": {
+                    ingredientes: ["Carne", "Queijo", "Frango", "Calabresa", "Palmito", "Ovo", "Milho", "Azeitona", "Catupiry", "Bacon", "Cebola"]
+                },
+                "Refrigerante": {
+                    tamanhos: ["Lata 350ml", "1L", "2L"],
+                    sabores: ["Coca-Cola", "Guaraná", "Fanta Laranja", "Sprite"]
+                },
+                "Guaracamp": {}
+            };
 
-            // Preços aleatórios para cada produto
-            const precos = {
-                "Pizza": () => (Math.random() * 30 + 20).toFixed(2), // 20 a 50
-                "Hamburguer": () => (Math.random() * 15 + 10).toFixed(2), // 10 a 25
-                "Pastel": () => (Math.random() * 8 + 5).toFixed(2), // 5 a 13
-                "Refrigerante": () => (Math.random() * 6 + 4).toFixed(2) // 4 a 10
-            };
+            // Preços
+            const precos = {
+                "Pizza": () => (Math.random() * 30 + 20).toFixed(2), 
+                "Hamburguer": () => (Math.random() * 15 + 10).toFixed(2), 
+                "Pastel Tradicional": () => (Math.random() * 8 + 5).toFixed(2), 
+                "Pastel Tudo Dentro": () => (Math.random() * 12 + 8).toFixed(2), 
+                "Refrigerante": (tamanho) => {
+                    if (tamanho === "Lata 350ml") return (Math.random() * 3 + 4).toFixed(2);
+                    if (tamanho === "1L") return (Math.random() * 4 + 6).toFixed(2);
+                    if (tamanho === "2L") return (Math.random() * 5 + 8).toFixed(2);
+                },
+                "Guaracamp": () => (Math.random() * 2 + 2).toFixed(2)
+            };
 
-            document.getElementById("produto").addEventListener("change", function(){
-                const produto = this.value;
-                const ingredientesBox = document.getElementById("ingredientesBox");
-                const listaIngredientes = document.getElementById("listaIngredientes");
-                const refrigerantesBox = document.getElementById("refrigerantesBox");
+            // Referências de elementos
+            const produtoSelect = document.getElementById("produto");
+            const opcoes = {
+                pizza: document.getElementById("opcoesPizza"),
+                hamburguer: document.getElementById("opcoesHamburguer"),
+                pastel: document.getElementById("opcoesPastel"),
+                refrigerante: document.getElementById("opcoesRefrigerante"),
+                guaracamp: document.getElementById("opcoesGuaracamp")
+            };
+            const listaIngredientesHamburguer = document.getElementById("ingredientesHamburguer");
+            const listaMolhosHamburguer = document.getElementById("molhosHamburguer");
+            const listaSaboresPastelTradicional = document.getElementById("saboresPastelTradicional");
+            const listaIngredientesPastel = document.getElementById("ingredientesPastel");
+            const saborPizza1 = document.getElementById("saborPizza1");
+            const saborPizza2 = document.getElementById("saborPizza2");
+            const tamanhoRefri = document.getElementById("tamanhoRefri");
+            const saborRefri = document.getElementById("saborRefri");
+            const quantidadeInput = document.getElementById("quantidade");
+            const tabelaCarrinho = document.getElementById("tabelaCarrinho");
+            const itensOcultos = document.getElementById("itensOcultos");
+            const formPedido = document.getElementById("formPedido");
 
-                listaIngredientes.innerHTML = "";
-                ingredientesBox.style.display = "none";
-                refrigerantesBox.style.display = "none";
+            // Popula os campos dinâmicos
+            const popularSelect = (select, options) => {
+                select.innerHTML = '<option value="" disabled selected>Selecione</option>';
+                options.forEach(option => {
+                    const opt = document.createElement("option");
+                    opt.value = opt.textContent = option.nome || option;
+                    opt.setAttribute('data-ingredientes', option.ingredientes || '');
+                    select.appendChild(opt);
+                });
+            };
 
-                if (ingredientes[produto]) {
-                    ingredientesBox.style.display = "block";
-                    ingredientes[produto].forEach(ing => {
-                        listaIngredientes.innerHTML += 
-                            `<label><input type="checkbox" value="${ing}"> ${ing}</label><br>`;
-                    });
-                } else if (produto === "Refrigerante") {
-                    refrigerantesBox.style.display = "block";
-                }
-            });
+            const popularCheckboxes = (div, options, max) => {
+                div.innerHTML = "";
+                options.forEach(option => {
+                    div.innerHTML += `<label><input type="checkbox" value="${option}"> ${option}</label>`;
+                });
+                if (max) {
+                    const checkboxes = div.querySelectorAll('input[type="checkbox"]');
+                    checkboxes.forEach(cb => {
+                        cb.addEventListener('change', () => {
+                            const selecionados = div.querySelectorAll('input[type="checkbox"]:checked').length;
+                            if (selecionados > max) {
+                                cb.checked = false;
+                                alert(`Você pode selecionar no máximo ${max} ingredientes.`);
+                            }
+                        });
+                    });
+                }
+            };
+            
+            const popularRadios = (div, options) => {
+                div.innerHTML = "";
+                options.forEach(option => {
+                    div.innerHTML += `<label><input type="radio" name="saborPastelTrad" value="${option}"> ${option}</label>`;
+                });
+            };
 
-            function adicionarItem() {
-                const produto = document.getElementById("produto").value;
-                const sabor = document.getElementById("sabor").value.trim();
-                const quantidade = parseInt(document.getElementById("quantidade").value);
+            // Event listener para o select de produto
+            produtoSelect.addEventListener("change", (event) => {
+                const produto = event.target.value;
+                Object.values(opcoes).forEach(op => op.style.display = "none");
+                
+                if (produto.startsWith("Pastel")) {
+                    opcoes.pastel.style.display = "block";
+                    document.getElementById("pastelTradicional").style.display = produto === "Pastel Tradicional" ? "block" : "none";
+                    document.getElementById("pastelTudoDentro").style.display = produto === "Pastel Tudo Dentro" ? "block" : "none";
+                } else if (opcoes[produto.toLowerCase()]) {
+                    opcoes[produto.toLowerCase()].style.display = "block";
+                }
 
-                let descricao = sabor;
+                switch(produto) {
+                    case "Pizza":
+                        popularSelect(saborPizza1, Object.values(produtos.Pizza.sabores));
+                        popularSelect(saborPizza2, Object.values(produtos.Pizza.sabores));
+                        break;
+                    case "Hamburguer":
+                        popularCheckboxes(listaIngredientesHamburguer, produtos.Hamburguer.ingredientes);
+                        popularCheckboxes(listaMolhosHamburguer, produtos.Hamburguer.molhos);
+                        break;
+                    case "Pastel Tradicional":
+                        popularRadios(listaSaboresPastelTradicional, produtos["Pastel Tradicional"].sabores);
+                        break;
+                    case "Pastel Tudo Dentro":
+                        popularCheckboxes(listaIngredientesPastel, produtos["Pastel Tudo Dentro"].ingredientes, 10);
+                        break;
+                    case "Refrigerante":
+                        popularSelect(tamanhoRefri, produtos.Refrigerante.tamanhos);
+                        popularSelect(saborRefri, produtos.Refrigerante.sabores);
+                        break;
+                    case "Guaracamp":
+                        popularSelect(tamanhoRefri, []); // Guaracamp não tem opções de tamanho
+                        popularSelect(saborRefri, []); // nem de sabor
+                        break;
+                }
+            });
 
-                if (ingredientes[produto]) {
-                    const selecionados = Array.from(document.querySelectorAll("#listaIngredientes input:checked"))
-                                            .map(cb => cb.value);
-                    if (selecionados.length > 0) {
-                        descricao = (descricao ? descricao + " - " : "") + selecionados.join(", ");
-                    }
-                } else if (produto === "Refrigerante") {
-                    descricao = document.getElementById("saborRefri").value;
-                }
+            // Adicionar item ao carrinho
+            window.adicionarItem = () => {
+                const produto = produtoSelect.value;
+                const quantidade = parseInt(quantidadeInput.value);
+                let descricao = "";
+                let precoUnit = 0;
 
-                if (!produto || !descricao || quantidade < 1) {
-                    alert("Preencha todos os campos corretamente.");
-                    return;
-                }
+                if (!produto || quantidade < 1) {
+                    alert("Por favor, selecione um produto e a quantidade.");
+                    return;
+                }
 
-                const precoUnit = parseFloat(precos[produto]());
-                const total = (precoUnit * quantidade).toFixed(2);
+                switch(produto) {
+                    case "Pizza":
+                        const sabor1 = saborPizza1.value;
+                        const sabor2 = saborPizza2.value;
+                        if (!sabor1) { alert("Selecione pelo menos um sabor para a pizza."); return; }
+                        
+                        const ingredientesSabor1 = produtos.Pizza.sabores[sabor1].ingredientes;
+                        const ingredientesSabor2 = sabor2 ? produtos.Pizza.sabores[sabor2].ingredientes : null;
+                        
+                        descricao = `${produtos.Pizza.ingredientesBase} - Sabores: ${sabor1} (${ingredientesSabor1})` + (sabor2 ? ` e ${sabor2} (${ingredientesSabor2})` : "");
+                        precoUnit = parseFloat(precos.Pizza());
+                        break;
+                    case "Hamburguer":
+                        const ingredientesSelecionados = Array.from(listaIngredientesHamburguer.querySelectorAll('input:checked')).map(cb => cb.value);
+                        const molhosSelecionados = Array.from(listaMolhosHamburguer.querySelectorAll('input:checked')).map(cb => cb.value);
+                        if (ingredientesSelecionados.length === 0) { alert("Selecione pelo menos um ingrediente para o hambúrguer."); return; }
+                        descricao = `Ingredientes: ${ingredientesSelecionados.join(", ")}` + (molhosSelecionados.length > 0 ? ` - Molhos: ${molhosSelecionados.join(", ")}` : "");
+                        precoUnit = parseFloat(precos.Hamburguer());
+                        break;
+                    case "Pastel Tradicional":
+                        const saborPastelTrad = document.querySelector('input[name="saborPastelTrad"]:checked');
+                        if (!saborPastelTrad) { alert("Selecione um sabor para o pastel tradicional."); return; }
+                        descricao = saborPastelTrad.value;
+                        precoUnit = parseFloat(precos["Pastel Tradicional"]());
+                        break;
+                    case "Pastel Tudo Dentro":
+                        const ingredientesPastel = Array.from(listaIngredientesPastel.querySelectorAll('input:checked')).map(cb => cb.value);
+                        if (ingredientesPastel.length === 0) { alert("Selecione pelo menos um ingrediente para o pastel."); return; }
+                        descricao = "Pastel " + ingredientesPastel.join(", ");
+                        precoUnit = parseFloat(precos["Pastel Tudo Dentro"]());
+                        break;
+                    case "Refrigerante":
+                        const tamanho = tamanhoRefri.value;
+                        const sabor = saborRefri.value;
+                        if (!tamanho || !sabor) { alert("Selecione o tamanho e o sabor do refrigerante."); return; }
+                        descricao = `${sabor} (${tamanho})`;
+                        precoUnit = parseFloat(precos.Refrigerante(tamanho));
+                        break;
+                    case "Guaracamp":
+                        descricao = "Guaracamp";
+                        precoUnit = parseFloat(precos.Guaracamp());
+                        break;
+                    default:
+                        alert("Produto não selecionado ou inválido.");
+                        return;
+                }
 
-                carrinho.push({produto, descricao, quantidade, precoUnit, total});
-                atualizarCarrinho();
-                limparCamposItem();
-            }
+                const total = (precoUnit * quantidade).toFixed(2);
+                carrinho.push({produto, descricao, quantidade, precoUnit, total});
+                atualizarCarrinho();
+                limparCamposItem();
+            }
 
-            function atualizarCarrinho() {
-                const tbody = document.querySelector("#tabelaCarrinho tbody");
-                tbody.innerHTML = "";
-                const itensOcultos = document.getElementById("itensOcultos");
-                itensOcultos.innerHTML = "";
+            window.removerItem = (index) => {
+                carrinho.splice(index, 1);
+                atualizarCarrinho();
+            }
 
-                carrinho.forEach((item,index)=>{
-                    const tr = document.createElement("tr");
-                    tr.innerHTML = `
-                        <td>${item.produto}</td>
-                        <td>${item.descricao}</td>
-                        <td>${item.quantidade}</td>
-                        <td>R$ ${item.precoUnit}</td>
-                        <td>R$ ${item.total}</td>
-                        <td><button type="button" onclick="removerItem(${index})">Remover</button></td>
-                    `;
-                    tbody.appendChild(tr);
+            const atualizarCarrinho = () => {
+                const tbody = tabelaCarrinho.querySelector("tbody");
+                tbody.innerHTML = "";
+                itensOcultos.innerHTML = "";
 
-                    for(const key in item){
-                        const input = document.createElement("input");
-                        input.type = "hidden";
-                        input.name = `itens[${index}][${key}]`;
-                        input.value = item[key];
-                        itensOcultos.appendChild(input);
-                    }
-                });
-            }
+                carrinho.forEach((item, index) => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${item.produto}</td>
+                        <td>${item.descricao}</td>
+                        <td>${item.quantidade}</td>
+                        <td>R$ ${item.precoUnit}</td>
+                        <td>R$ ${item.total}</td>
+                        <td><button type="button" class="btn-remover" onclick="removerItem(${index})">Remover</button></td>
+                    `;
+                    tbody.appendChild(tr);
 
-            function removerItem(index){
-                carrinho.splice(index,1);
-                atualizarCarrinho();
-            }
+                    for(const key in item){
+                        const input = document.createElement("input");
+                        input.type = "hidden";
+                        input.name = `itens[${index}][${key}]`;
+                        input.value = item[key];
+                        itensOcultos.appendChild(input);
+                    }
+                });
+            }
 
-            function limparCamposItem(){
-                document.getElementById("produto").selectedIndex = 0;
-                document.getElementById("sabor").value = "";
-                document.getElementById("quantidade").value = 1;
-                document.getElementById("ingredientesBox").style.display = "none";
-                document.getElementById("refrigerantesBox").style.display = "none";
-            }
+            const limparCamposItem = () => {
+                produtoSelect.selectedIndex = 0;
+                Object.values(opcoes).forEach(op => op.style.display = "none");
+                quantidadeInput.value = 1;
+            }
 
-            async function buscarCEP() {
-                const cep = document.getElementById("cep").value.replace(/\D/g, "");
-                if (!cep || cep.length !== 8) {
-                    alert("Digite um CEP válido com 8 números.");
-                    return;
-                }
+            window.buscarCEP = async () => {
+                const cep = document.getElementById("cep").value.replace(/\D/g, "");
+                if (cep.length !== 8) {
+                    alert("Digite um CEP válido com 8 números.");
+                    return;
+                }
+                
+                const enderecoInput = document.getElementById("endereco");
+                enderecoInput.value = "Buscando...";
 
-                const enderecoInput = document.getElementById("endereco");
-                enderecoInput.value = "Buscando...";
+                try {
+                    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                    const data = await response.json();
 
-                try {
-                    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-                    const data = await response.json();
+                    if (data.erro) {
+                        enderecoInput.value = "";
+                        alert("CEP não encontrado.");
+                        return;
+                    }
+                    enderecoInput.value = `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
+                } catch (error) {
+                    enderecoInput.value = "";
+                    alert("Erro ao buscar o CEP. Tente novamente.");
+                    console.error(error);
+                }
+            }
 
-                    if (data.erro) {
-                        enderecoInput.value = "";
-                        alert("CEP não encontrado.");
-                        return;
-                    }
+            formPedido.addEventListener('submit', (event) => {
+                if (carrinho.length === 0) {
+                    event.preventDefault();
+                    alert("O seu carrinho de compras está vazio. Por favor, adicione um item antes de enviar o pedido.");
+                }
+            });
 
-                    enderecoInput.value = `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
-                } catch (error) {
-                    enderecoInput.value = "";
-                    alert("Erro ao buscar o CEP. Tente novamente.");
-                    console.error(error);
-                }
-            }
-        </script>
-
-        <!-- Observações -->
-        <label for="observacoes">Observações:</label>
-        <textarea id="observacoes" name="observacoes" placeholder="Ex: Sem cebola, cortar em 8 pedaços..."></textarea>
-
-        <!-- Forma de pagamento -->
-        <h2>Pagamento</h2>
-        <label>Forma de pagamento:</label><br>
-        <label><input type="radio" name="pagamento" value="VR" required> VR</label><br>
-        <label><input type="radio" name="pagamento" value="Débito"> Débito</label><br>
-        <label><input type="radio" name="pagamento" value="Crédito"> Crédito</label><br>
-        <label><input type="radio" name="pagamento" value="Pix"> Pix</label><br>
-
-        <label>Tipo de pagamento:</label><br>
-        <label><input type="radio" name="tipo_pagamento" value="Online" required> Online</label><br>
-        <label><input type="radio" name="tipo_pagamento" value="Na Entrega"> Na Entrega</label><br>
-
-        <!-- Botões -->
-        <button type="submit" class="btn-submit">Enviar Pedido</button>
-        <button type="reset" class="btn-reset">Limpar Formulário</button>
-
-    </form>
+        });
+    </script>
 
 </body>
 </html>
