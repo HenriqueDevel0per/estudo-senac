@@ -37,7 +37,7 @@ body {
 
 label{
     align-items: center;
-    color: #28a745;
+    color: #f8f9fa; /* Alterado para melhor contraste */
 }
 
 section{
@@ -80,6 +80,11 @@ h2.text-uppercase {
     color: var(--text-color);
 }
 
+/* Link do produto para remover sublinhado */
+.product-link {
+    text-decoration: none;
+}
+
 .product-card {
     background-color: var(--secondary-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -90,22 +95,47 @@ h2.text-uppercase {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3) !important;
 }
 
+/* Wrapper para controlar o overflow do zoom da imagem */
+.product-image-wrapper {
+    overflow: hidden;
+    border-radius: 1rem 1rem 0 0;
+}
+
 .product-image {
     height: 250px;
     object-fit: cover;
-    transition: transform 0.8s ease;
+    transition: transform 0.5s ease;
 }
 
 .product-card:hover .product-image {
-    transform: scale(1.30);
+    transform: scale(1.1);
 }
 
 .card-title {
     color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.product-card:hover .card-title {
+    color: var(--primary-color);
 }
 
 .card-text {
     color: #28a745; /* Verde para preço */
+}
+
+/* Informações extras no hover */
+.product-info-hover {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.4s ease, max-height 0.4s ease;
+}
+
+.product-card:hover .product-info-hover {
+    opacity: 1;
+    max-height: 100px; /* Altura suficiente para as badges */
+    margin-bottom: 0.5rem;
 }
 
 /* Botão de Comprar */
