@@ -23,17 +23,11 @@ function addToCart(product) {
     updateCartIcon();
 }
 
-/**
- * NOVO: Altera a quantidade de um item no carrinho.
- * @param {number} index - O índice do item.
- * @param {number} change - A mudança na quantidade (+1 ou -1).
- */
 function updateQuantity(index, change) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     if (cart[index]) {
         cart[index].quantity += change;
         if (cart[index].quantity <= 0) {
-            // Se a quantidade for 0 ou menos, remove o item
             cart.splice(index, 1);
         }
     }
@@ -95,9 +89,7 @@ function loadCartPage() {
             </div>`;
     });
 
-    // Recalcula totais
     calculateTotals(subtotal);
-    // Se um CEP já foi calculado, exibe as opções novamente
     if(localStorage.getItem('cep')){
         calculateShipping(false);
     }
@@ -119,7 +111,7 @@ function calculateTotals(subtotal) {
     }
 
     if (shippingInfo) {
-        totalHTML += `<h5 class="text-light">Frete: R$ ${shippingCost.toFixed(2)}</h5>`;
+        totalHTML += `<h5 class="text-light">Frete (${shippingInfo.name}): R$ ${shippingCost.toFixed(2)}</h5>`;
     }
 
     const finalTotal = subtotal - discountAmount + shippingCost;
@@ -143,14 +135,8 @@ function applyCoupon() {
     loadCartPage();
 }
 
-// --- NOVO: LÓGICA DE FRETE ---
+// --- LÓGICA DE FRETE ---
 
-/**
- * Identifica a região com base no CEP.
- * As faixas de CEP foram obtidas de fontes públicas dos Correios.
- * @param {string} cep - O CEP a ser verificado.
- * @returns {string} - O nome da região.
- */
 function getRegionByCep(cep) {
     const cepNum = parseInt(cep.substring(0, 5));
     if (cepNum >= 1000 && cepNum <= 39999) return 'sudeste';
@@ -161,10 +147,6 @@ function getRegionByCep(cep) {
     return 'desconhecida';
 }
 
-/**
- * Calcula e exibe as opções de frete.
- * @param {boolean} showAlert - Se deve mostrar um alerta para CEP inválido.
- */
 function calculateShipping(showAlert = true) {
     const cep = document.getElementById('cep-code').value.replace(/\D/g, '');
     const shippingOptionsDiv = document.getElementById('shipping-options');
@@ -174,7 +156,6 @@ function calculateShipping(showAlert = true) {
         return;
     }
     
-    // Salva o CEP para recarregar a página
     localStorage.setItem('cep', cep);
 
     const region = getRegionByCep(cep);
@@ -183,7 +164,6 @@ function calculateShipping(showAlert = true) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     
-    // Regra de frete grátis
     if (subtotal > 1000) {
         options.push({ name: 'Frete Grátis', price: 0, days: 'Até 10 dias úteis' });
     } else {
@@ -227,11 +207,6 @@ function calculateShipping(showAlert = true) {
     shippingOptionsDiv.innerHTML = html;
 }
 
-/**
- * Salva a opção de frete escolhida e recarrega os totais.
- * @param {number} price - Preço do frete.
- * @param {string} name - Nome do serviço de frete.
- */
 function selectShipping(price, name) {
     localStorage.setItem('shipping', JSON.stringify({ name, price }));
     loadCartPage();
