@@ -1,3 +1,16 @@
+/* Variáveis CSS para temas */
+:root {
+    --cor-fundo-principal: #121212;
+    --cor-fundo-secundario: #1E1E1E;
+    --cor-painel: #2C2C2C;
+    --cor-texto-claro: #f8f8f8;
+    --cor-destaque: #00C853; /* Verde do Uber Eats */
+    --cor-botoes: #555;
+    --cor-botoes-hover: #777;
+    --cor-remocao: #FF6D00; /* Laranja */
+    --cor-remocao-hover: #FF9100;
+}
+
 /* Reset básico */
 * {
     margin: 0;
@@ -8,50 +21,77 @@
 
 /* Body */
 body {
-    background-image: url('fundo-2.jpg');
-    background-size: cover;
-    background-position: center;
+    background-image: url('fundo-3.jpg');
+    background-size:cover;
+    background-position: 50% 15%; /* Foca na parte superior da imagem, mas permite o fundo preencher a tela */
     background-repeat: no-repeat;
-    margin: auto;
-    background-color: #121212; /* preto quase total */
-    color: #fff;
+    background-color: var(--cor-fundo-principal);
+    color: var(--cor-texto-claro);
     display: flex;
-    justify-content: center; /* centraliza horizontalmente */
-    align-items: center;     /* centraliza verticalmente */
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
     padding: 20px;
     flex-direction: column;
 }
-
 /* Título */
 h1 {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: large;
+    font-family: 'Bebas Neue', cursive;
     text-align: center;
-    background-color: #2C2C2C;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.8), rgba(200, 0, 0, 0.7)); 
     margin-bottom: 20px;
-    font-size: 50px;
-    color: #f8f8f8; /* verde Uber Eats */
+    font-size: clamp(36px, 6vw, 60px);
+    color: #fff;
     font-weight: bold;
+    padding: 15px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    letter-spacing: 2px;
+    border: 2px solid var(--cor-destaque);
+    transition: all 0.3s ease-in-out;
 }
 
-/* Formulário */
-form {
-    background-color: #1E1E1E; /* painel escuro */
-    padding: 30px 25px;
+h1:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+}
+
+/* Contêiner Principal */
+.main-content {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: rgba(30, 30, 30, 0.9); /* Usando RGBA para transparência */
+    padding: 30px;
     border-radius: 12px;
-    width: 100%;
-    max-width: 600px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-    margin: auto; /* garante centralização horizontal */
-}
-.table-responsive {
-    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    position: relative;
 }
 
-/* Subtítulos */
-h2, h3 {
-    color: #00C853;
+/* Formulário e Fieldsets */
+form {
+    padding: 0; /* Remove o padding do formulário, pois já está no main-content */
+    background-color: transparent; /* Torna o fundo do formulário transparente */
+    box-shadow: none; /* Remove a sombra do formulário */
+}
+
+fieldset {
+    border: 2px solid var(--cor-painel);
+    border-radius: 8px;
+    margin-bottom: 25px;
+    padding: 15px;
+}
+
+legend {
+    color: var(--cor-destaque);
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 0 10px;
+}
+
+h3 {
+    color: var(--cor-destaque);
     margin-top: 20px;
     margin-bottom: 10px;
 }
@@ -65,10 +105,8 @@ label {
     font-size: 14px;
 }
 
-/* Inputs e select */
-input[type="text"],
-input[type="tel"],
-input[type="number"],
+/* Inputs, select e textarea */
+input:not([type="radio"]):not([type="checkbox"]),
 select,
 textarea {
     width: 100%;
@@ -76,21 +114,22 @@ textarea {
     margin-top: 5px;
     border: 2px solid #333;
     border-radius: 8px;
-    background-color: #2C2C2C;
-    color: #fff;
+    background-color: var(--cor-painel);
+    color: var(--cor-texto-claro);
     font-size: 14px;
-    transition: border 0.3s, background 0.3s;
+    transition: border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-    border-color: #00C853;
+    border-color: var(--cor-destaque);
     background-color: #3a3a3a;
+    box-shadow: 0 0 5px var(--cor-destaque);
     outline: none;
 }
 
-/* Textarea */
+/* textarea */
 textarea {
     resize: vertical;
     min-height: 80px;
@@ -109,10 +148,18 @@ button {
     transition: all 0.3s ease;
 }
 
-/* Botões de ação */
+/* Botões do formulário */
+.botoes-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
 .btn-submit {
-    background-color: #00C853; /* verde Uber Eats */
+    background-color: var(--cor-destaque);
     color: #fff;
+    flex-grow: 1;
     margin-right: 10px;
 }
 
@@ -121,23 +168,87 @@ button {
 }
 
 .btn-reset {
-    background-color: #555;
+    background-color: var(--cor-botoes);
     color: #fff;
+    flex-grow: 1;
 }
 
 .btn-reset:hover {
-    background-color: #777;
+    background-color: var(--cor-botoes-hover);
 }
 
-/* Tabela carrinho */
-table {
+/* Botão adicionar */
+.btn-adicionar {
+    background-color: var(--cor-destaque);
+    color: #fff;
     width: 100%;
-    border-collapse: collapse;
     margin-top: 10px;
 }
 
-table th, table td {
+/* Botão de busca CEP */
+.btn-cep {
+    padding: 12px 15px;
+    background-color: var(--cor-botoes);
+    color: #fff;
+    font-size: 14px;
+    text-transform: none;
+    margin-left: 10px;
+    margin-top: 0;
+}
+
+.btn-cep:hover {
+    background-color: var(--cor-botoes-hover);
+}
+
+.input-com-botao {
+    display: flex;
+    align-items: center;
+}
+
+.input-com-botao input {
+    margin-top: 0;
+}
+
+/* Opções de item */
+.item-opcoes {
+    margin-top: 15px;
     padding: 10px;
+    border: 1px dashed #444;
+    border-radius: 8px;
+}
+
+.item-opcoes h4 {
+    color: #ddd;
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+
+.item-opcoes .sabor-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.item-opcoes .sabor-selection select {
+    margin-top: 0;
+}
+
+/* Tabela de carrinho */
+.table-responsive {
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: var(--cor-painel);
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    padding: 12px;
     text-align: left;
     border-bottom: 1px solid #444;
     font-size: 14px;
@@ -145,47 +256,77 @@ table th, table td {
 
 table th {
     background-color: #222;
-    color: #00C853;
+    color: var(--cor-destaque);
+    position: sticky;
+    top: 0;
 }
 
-/* Checkbox dos ingredientes */
-#ingredientesBox label {
-    display: inline-block;
-    margin-right: 10px;
-    margin-bottom: 5px;
+/* Estilo hover para as linhas da tabela */
+table.table-hover tbody tr:hover {
+    background-color: rgba(0, 200, 83, 0.1);
 }
 
-/* Radios de pagamento */
-input[type="radio"] {
-    margin-right: 8px;
-}
-
-/* Estilo hover para botões remover na tabela */
-table button {
-    background-color: #FF6D00; /* laranja */
+/* Botão remover na tabela */
+table .btn-remover {
+    background-color: var(--cor-remocao);
     color: #fff;
-    padding: 5px 10px;
+    padding: 6px 12px;
     font-size: 12px;
     border-radius: 6px;
+    text-transform: none;
+    margin: 0;
 }
 
-table button:hover {
-    background-color: #FF9100;
+table .btn-remover:hover {
+    background-color: var(--cor-remocao-hover);
 }
 
-/* Responsivo */
+/* Checkbox e Radio buttons */
+.checkbox-group,
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 5px;
+}
+
+.checkbox-group label,
+.radio-group label {
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+}
+
+.checkbox-group input[type="checkbox"],
+.radio-group input[type="radio"] {
+    margin-right: 8px;
+    width: auto;
+}
+
+/* Responsividade */
 @media (max-width: 640px) {
-    form {
+    body {
+        padding: 10px;
+    }
+    .main-content {
         padding: 20px;
     }
     h1 {
-        font-size: 28px;
+        font-size: clamp(20px, 6vw, 28px);
     }
-    table th, table td {
+    table th,
+    table td {
         font-size: 12px;
+        padding: 8px;
     }
-    button {
-        font-size: 14px;
+    .botoes-form {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .btn-submit,
+    .btn-reset {
+        width: 100%;
+        margin-right: 0;
     }
 }
 
@@ -197,21 +338,4 @@ table button:hover {
 .animate-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-}
-
-/* Inputs focados */
-input:focus, select:focus, textarea:focus {
-    border-color: #00C853;
-    box-shadow: 0 0 5px #00C853;
-}
-
-/* Tabela carrinho hover */
-table.table-hover tbody tr:hover {
-    background-color: rgba(0,200,83,0.2);
-}
-
-/* Scroll responsivo */
-.table-responsive {
-    max-height: 300px;
-    overflow-y: auto;
 }

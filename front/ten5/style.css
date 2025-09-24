@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* style.css */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Oswald:wght@700&display=swap');
 
@@ -78,4 +79,173 @@ body {
     background-color: var(--secondary-color);
     padding: 1rem;
     border-radius: 0.5rem;
+=======
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Oswald:wght@700&display=swap');
+
+:root {
+    --primary-color: #ffc107; /* Amarelo Vibrante */
+    --secondary-color: #343a40; /* Cinza Escuro */
+    --text-color: #f8f9fa; /* Branco Off-white */
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #212529;
+    color: var(--text-color);
+    background-size: auto;
+}
+
+/* Navbar */
+.navbar-brand h1 {
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 2px;
+}
+
+.nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+.btn-outline-warning {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.btn-outline-warning:hover {
+    background-color: var(--primary-color);
+    color: #212529;
+}
+
+label{
+    align-items: center;
+    color: #f8f9fa; /* Alterado para melhor contraste */
+}
+
+section{
+    height: auto;
+}
+
+/* Seção Hero */
+.hero-section {
+    height: 70vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1542828236-8a0339d2931a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero-section h2, .hero-section h3 {
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Animação para o texto do hero */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-text {
+    animation: slideInUp 1s ease-out;
+}
+
+/* Seção de Produtos */
+h2.text-uppercase {
+    color: var(--text-color);
+}
+
+/* Link do produto para remover sublinhado */
+.product-link {
+    text-decoration: none;
+}
+
+.product-card {
+    background-color: var(--secondary-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Wrapper para controlar o overflow do zoom da imagem */
+.product-image-wrapper {
+    overflow: hidden;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.product-image {
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.9s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.30);
+}
+
+.card-title {
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.product-card:hover .card-title {
+    color: var(--primary-color);
+}
+
+.card-text {
+    color: #28a745; /* Verde para preço */
+}
+
+/* Informações extras no hover */
+.product-info-hover {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.4s ease, max-height 0.4s ease;
+}
+
+.product-card:hover .product-info-hover {
+    opacity: 1;
+    max-height: 100px; /* Altura suficiente para as badges */
+    margin-bottom: 0.5rem;
+}
+
+/* Botão de Comprar */
+.btn-warning {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #212529;
+    transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+    transform: scale(1.05);
+    background-color: #ffcd39;
+    border-color: #ffcd39;
+}
+
+/* Footer */
+footer {
+    background-color: #111;
+    color: #888;
+}
+
+footer a {
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #fff;
+>>>>>>> aa6eafbe9e4f1c1a3ac1844b1f81db88730c8615
 }
