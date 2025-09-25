@@ -6,7 +6,7 @@
     <title>FootStep Runner Store</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet" >
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -21,97 +21,104 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Início</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#produtos">Produtos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contato">Contato</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Início</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#produtos">Produtos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
                     </ul>
                     <a href="carrinho.html" class="btn btn-outline-warning d-flex align-items-center me-2">
-                        <i class="bi bi-cart4 me-2"></i>
-                        Carrinho
-                        <span id="cart-count" class="badge bg-danger ms-2">0</span>
+                        <i class="bi bi-cart4 me-2"></i> Carrinho <span id="cart-count" class="badge bg-danger ms-2">0</span>
                     </a>
                 </div>
             </div>
         </nav>
     </header>
 
-    <section class="hero-section d-flex align-items-center text-center text-white">
-        <div class="container">
-            <h2 class="display-2 fw-bold animate-text">ULTRA PERFORMANCE.</h2>
-            <h3 class="display-5 fw-light animate-text">SUA PRÓXIMA CORRIDA COMEÇA AQUI.</h3>
+    <section id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active c-item">
+                <img src="https://imgnike-a.akamaihd.net/1920x1920/074463NXA3.jpg" class="d-block w-100 c-img" alt="Tênis em destaque">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-2 fw-bold">ULTRA PERFORMANCE.</h2>
+                    <h3 class="display-5 fw-light">SUA PRÓXIMA CORRIDA COMEÇA AQUI.</h3>
+                </div>
+            </div>
+            <div class="carousel-item c-item">
+                <img src="https://imgnike-a.akamaihd.net/1920x1920/01632453A1.jpg" class="d-block w-100 c-img" alt="Variedade de calçados">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-2 fw-bold">ESTILO E CONFORTO</h2>
+                    <h3 class="display-5 fw-light">OS MELHORES MODELOS PARA O SEU DIA A DIA.</h3>
+                </div>
+            </div>
+            <div class="carousel-item c-item">
+                <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?q=80&w=2071&auto=format&fit=crop" class="d-block w-100 c-img" alt="Pessoa amarrando o tênis">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-2 fw-bold">PREPARE-SE PARA VENCER</h2>
+                    <h3 class="display-5 fw-light">TECNOLOGIA QUE IMPULSIONA.</h3>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span>
+        </button>
     </section>
 
     <main class="container my-5" id="produtos">
         <h2 class="text-center mb-5 display-4 fw-bold text-dark text-uppercase">Nossos Modelos</h2>
         <div class="row g-4 justify-content-center">
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <a href="produto.html" class="product-link">
-                    <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden product-card">
-                        <div class="product-image-wrapper">
-                            <img src="https://imgnike-a.akamaihd.net/1920x1920/074463NXA5.jpg" class="card-img-top product-image" alt="Tênis Nike Air Zoom Alphafly 3">
-                        </div>
-                        <div class="card-body d-flex flex-column text-center">
-                            <h5 class="card-title fw-semibold text-truncate w-100">Tênis Nike Air Zoom Alphafly 3 Premium Masculino</h5>
-                             <div class="product-info-hover">
-                                <span class="badge bg-light text-dark">Corrida</span>
-                                <span class="badge bg-light text-dark">Ultra performance</span>
-                            </div>
-                            <p class="card-text text-success fw-bold fs-4 mt-2 mb-3">R$ 2500,99</p>
-                            <button class="btn btn-warning w-100 mt-auto fw-bold text-uppercase stretched-link"><i class="bi bi-eye me-2"></i> Ver Detalhes</button>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <a href="produto-airmax.html" class="product-link">
-                    <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden product-card">
-                        <div class="product-image-wrapper">
-                            <img src="https://imgnike-a.akamaihd.net/1920x1920/01632453A14.jpg" class="card-img-top product-image" alt="Tênis Nike Air Max 97">
-                        </div>
-                        <div class="card-body d-flex flex-column text-center">
-                            <h5 class="card-title fw-semibold text-truncate w-100">Tênis Nike Air Max 97</h5>
-                            <div class="product-info-hover">
-                                <span class="badge bg-light text-dark">Casual</span>
-                                <span class="badge bg-light text-dark">Estilo</span>
-                            </div>
-                            <p class="card-text text-success fw-bold fs-4 mt-2 mb-3">R$ 899,99</p>
-                            <button class="btn btn-warning w-100 mt-auto fw-bold text-uppercase stretched-link"><i class="bi bi-eye me-2"></i> Ver Detalhes</button>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden product-card">
-                    <img src="https://static.netshoes.com.br/produtos/tenis-adidas-run-70-20-masculino/26/FB9-8954-026/FB9-8954-026_zoom1.jpg?ts=1730919748&ims=1088x" class="card-img-top product-image" alt="Tênis Adidas Run">
-                    <div class="card-body d-flex flex-column align-items-center text-center">
-                        <h5 class="card-title fw-semibold text-truncate w-100">Tênis Adidas Run</h5>
-                        <p class="card-text text-success fw-bold fs-4 my-2">R$ 349,90</p>
+                    <a href="produto.html" class="product-link">
+                        <div class="product-image-wrapper"><img src="https://imgnike-a.akamaihd.net/1920x1920/074463NXA5.jpg" class="card-img-top product-image" alt="Tênis Nike Air Zoom Alphafly 3"></div>
+                    </a>
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title fw-semibold text-truncate w-100">Tênis Nike Air Zoom Alphafly 3</h5>
+                        <p class="card-text text-success fw-bold fs-4 mt-2 mb-3">R$ 2500,99</p>
+                        <button class="btn btn-outline-light btn-sm mt-auto" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-product-id="002">
+                            <i class="bi bi-eye me-2"></i> Ver Rápido
+                        </button>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden product-card">
-                    <img src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa/global/310779/04/sv01/fnd/BRA/w/1000/h/1000/fmt/png" class="card-img-top product-image" alt="Tênis Puma Scend Pro 2 Masculino">
-                    <div class="card-body d-flex flex-column align-items-center text-center">
-                        <h5 class="card-title fw-semibold text-truncate w-100">Tênis Puma Scend Pro 2 Masculino</h5>
-                        <p class="card-text text-success fw-bold fs-4 my-2">R$ 349,90</p>
+                     <a href="produto-airmax.html" class="product-link">
+                        <div class="product-image-wrapper"><img src="https://imgnike-a.akamaihd.net/1920x1920/01632453A14.jpg" class="card-img-top product-image" alt="Tênis Nike Air Max 97"></div>
+                    </a>
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title fw-semibold text-truncate w-100">Tênis Nike Air Max 97</h5>
+                        <p class="card-text text-success fw-bold fs-4 mt-2 mb-3">R$ 899,99</p>
+                         <button class="btn btn-outline-light btn-sm mt-auto" data-bs-toggle="modal" data-bs-target="#quickViewModal" data-product-id="001">
+                            <i class="bi bi-eye me-2"></i> Ver Rápido
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="bg-dark text-white text-center py-4" id="contato">
-        <div class="container">
-            <p class="mb-0">&copy; 2025 FootStep Runner Store. Todos os direitos reservados.</p>
+    <div class="modal fade" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title" id="quickViewModalLabel">Detalhes do Produto</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="quickViewModalBody">
+                    </div>
+            </div>
         </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-4" id="contato">
+        <div class="container"><p class="mb-0">&copy; 2025 FootStep Runner Store. Todos os direitos reservados.</p></div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

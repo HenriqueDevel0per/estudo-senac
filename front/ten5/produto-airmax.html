@@ -13,27 +13,17 @@
 
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <i class="bi bi-cart-check-fill me-2 text-success"></i>
-                <strong class="me-auto">Sucesso!</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                Nike Air Max 97 foi adicionado ao seu carrinho.
-            </div>
+            <div class="toast-header"><i class="bi bi-cart-check-fill me-2 text-success"></i><strong class="me-auto">Sucesso!</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button></div>
+            <div class="toast-body">Nike Air Max 97 foi adicionado ao seu carrinho.</div>
         </div>
     </div>
 
     <header class="bg-dark text-white">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-lg">
             <div class="container">
-                <a class="navbar-brand fw-bold text-uppercase" href="index_ten5.html">
-                    <h1 class="h3 mb-0 me-2 text-warning">👣FootStep Runner Store👣</h1>
-                </a>
+                <a class="navbar-brand fw-bold text-uppercase" href="index_ten5.html"><h1 class="h3 mb-0 me-2 text-warning">👣FootStep Runner Store👣</h1></a>
                 <a href="carrinho.html" class="btn btn-outline-warning d-flex align-items-center ms-auto">
-                    <i class="bi bi-cart4 me-2"></i>
-                    Carrinho
-                    <span id="cart-count" class="badge bg-danger ms-2">0</span>
+                    <i class="bi bi-cart4 me-2"></i> Carrinho <span id="cart-count" class="badge bg-danger ms-2">0</span>
                 </a>
             </div>
         </nav>
@@ -42,117 +32,50 @@
     <main class="container my-5" id="product-details" data-product-id="001" data-product-name="Tênis Nike Air Max 97" data-product-price="899.99">
         <div class="row g-5">
             <div class="col-lg-7">
-                <div class="main-image-container mb-3">
-                    <img src="https://imgnike-a.akamaihd.net/1920x1920/01632453A1.jpg" class="img-fluid rounded-4 shadow" id="mainImage" alt="Tênis Nike Air Max 97 - Visão Principal">
-                </div>
+                <div class="main-image-container mb-3"><img src="https://imgnike-a.akamaihd.net/360x360/01632453A14.jpg" class="img-fluid rounded-4 shadow" id="mainImage" alt="Tênis Nike Air Max 97"></div>
                 <div class="thumbnail-container d-flex gap-3">
-                    <img src="https://imgnike-a.akamaihd.net/1920x1920/01632453A14.jpg" class="img-thumbnail active" alt="Thumbnail 1" onclick="changeMedia(this, 'image')">
-                    <video class="img-thumbnail" alt="Thumbnail Video" onclick="changeMedia(this, 'video')" muted>
-                        <source src="https://imgnike-a.akamaihd.net/strapi/nike/video_18_2_73496feec0/video_18_2_73496feec0.mp4" type="video/mp4">
-                    </video>
-                    <img src="https://imgnike-a.akamaihd.net/1920x1920/01632453A4.jpg" class="img-thumbnail" alt="Thumbnail 2" onclick="changeMedia(this, 'image')">
+                    <img src="https://imgnike-a.akamaihd.net/360x360/01632453A14.jpg" class="img-thumbnail active" alt="Thumbnail 1" onclick="changeMedia(this, 'image')">
+                    <video class="img-thumbnail" alt="Thumbnail Video" onclick="changeMedia(this, 'video')" muted><source src="https://imgnike-a.akamaihd.net/strapi/nike/video_18_2_73496feec0/video_18_2_73496feec0.mp4" type="video/mp4"></video>
                 </div>
             </div>
 
             <div class="col-lg-5">
                 <h1 class="display-5 fw-bold text-light">Tênis Nike Air Max 97</h1>
                 <p class="fs-5 text-light-50 mb-3">Casual / Estilo</p>
-                <div class="price-tag mb-4">
-                    <span class="fs-2 fw-bold text-success">R$ 899,99</span>
-                </div>
-                <p class="text-light">O Nike Air Max 97 mantém o design de ondulação do original, inspirado nos trens-bala japoneses, para um look que leva seu estilo a toda velocidade.</p>
-                
+                <div class="price-tag mb-4"><span class="fs-2 fw-bold text-success">R$ 899,99</span></div>
                 <div class="my-4">
                     <label class="form-label fs-5">Tamanho:</label>
                     <div id="size-options" class="size-options d-flex flex-wrap gap-2">
-                        <button type="button" class="btn btn-outline-light size-btn">38</button>
-                        <button type="button" class="btn btn-outline-light size-btn">39</button>
-                        <button type="button" class="btn btn-outline-light size-btn">40</button>
                         <button type="button" class="btn btn-outline-light size-btn active">41</button>
                         <button type="button" class="btn btn-outline-light size-btn">42</button>
                     </div>
                 </div>
-
                 <div class="d-grid gap-2 mt-4">
                     <button id="addToCartBtn" class="btn btn-warning btn-lg fw-bold text-uppercase">
                         <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                        <i class="bi bi-cart-plus me-2"></i>
-                        <span class="btn-text">Adicionar ao Carrinho</span>
+                        <i class="bi bi-cart-plus me-2"></i><span class="btn-text">Adicionar ao Carrinho</span>
                     </button>
-                    <button class="btn btn-outline-light btn-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="Clique para salvar este item na sua lista de desejos!">
-                        Favoritar <i class="bi bi-heart ms-2"></i>
-                    </button>
+                    <button class="btn btn-outline-light btn-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="Salvar para depois!">Favoritar <i class="bi bi-heart ms-2"></i></button>
+                </div>
+                
+                <div class="accordion accordion-flush mt-4" id="productInfoAccordion">
+                    <div class="accordion-item bg-transparent text-white">
+                        <h2 class="accordion-header" id="headingOne"><button class="accordion-button bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">Detalhes do Produto</button></h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#productInfoAccordion"><div class="accordion-body">O Nike Air Max 97 mantém o design de ondulação do original, inspirado nos trens-bala japoneses, para um look que leva seu estilo a toda velocidade.</div></div>
+                    </div>
+                    <div class="accordion-item bg-transparent text-white">
+                        <h2 class="accordion-header" id="headingTwo"><button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">Especificações Técnicas</button></h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#productInfoAccordion"><div class="accordion-body">Unidade Nike Air de comprimento total para conforto de primeira classe.</div></div>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-
-    <footer class="bg-dark text-white text-center py-4 mt-5">
-        <div class="container">
-            <p class="mb-0">&copy; 2025 FootStep Runner Store. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+    
+    <footer class="bg-dark text-white text-center py-4 mt-5"><div class="container"><p class="mb-0">&copy; 2025 FootStep Runner Store. Todos os direitos reservados.</p></div></footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="cart.js"></script>
-    <script>
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-        [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-
-        const toastLiveExample = document.getElementById('liveToast');
-        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
-        const addToCartBtn = document.getElementById('addToCartBtn');
-        
-        addToCartBtn.addEventListener('click', () => {
-            const productDetails = document.getElementById('product-details');
-            const selectedSizeEl = document.querySelector('#size-options .size-btn.active');
-
-            if (!selectedSizeEl) {
-                alert('Por favor, selecione um tamanho.');
-                return;
-            }
-
-            const product = {
-                id: productDetails.dataset.productId,
-                name: productDetails.dataset.productName,
-                price: parseFloat(productDetails.dataset.productPrice),
-                size: selectedSizeEl.textContent.trim(),
-                image: document.getElementById('mainImage').src
-            };
-            
-            const spinner = addToCartBtn.querySelector('.spinner-border');
-            const btnText = addToCartBtn.querySelector('.btn-text');
-            spinner.classList.remove('d-none');
-            btnText.textContent = 'Adicionando...';
-            addToCartBtn.disabled = true;
-
-            setTimeout(() => {
-                addToCart(product);
-                toastBootstrap.show();
-                spinner.classList.add('d-none');
-                btnText.textContent = 'Adicionar ao Carrinho';
-                addToCartBtn.disabled = false;
-            }, 1000);
-        });
-
-        document.querySelectorAll('.size-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-            });
-        });
-
-        function changeMedia(element, type) {
-            const mainContainer = document.querySelector('.main-image-container');
-            if (type === 'image') {
-                mainContainer.innerHTML = `<img src="${element.src}" class="img-fluid rounded-4 shadow" id="mainImage" alt="Tênis Nike Air Max 97 - Visão Principal">`;
-            } else {
-                const videoSource = element.querySelector('source').src;
-                mainContainer.innerHTML = `<video class="img-fluid rounded-4 shadow" id="mainImage" alt="Tênis Nike Air Max 97 - Vídeo" autoplay muted loop><source src="${videoSource}" type="video/mp4"></video>`;
-            }
-            document.querySelectorAll('.img-thumbnail').forEach(el => el.classList.remove('active'));
-            element.classList.add('active');
-        }
-    </script>
+    <script src="product-page.js"></script>
 </body>
 </html>
