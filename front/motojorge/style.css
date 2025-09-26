@@ -2,49 +2,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Oswald:wght@700&display=swap');
 
 :root {
-    /* PALETA DE CORES ATUALIZADA CONFORME SOLICITADO */
-    --primary-color: #0055d4;   /* Azul Principal */
-    --secondary-color: #fc0202; /* Vermelho Destaque */
-    --light-color: #f8f9fa;     /* Branco */
-    --dark-color: #212529;      /* Cinza Escuro */
-    --accent-color: #79abdd;    /* Azul Claro (para hovers) */
+    --primary-color: #0055d4;
+    --secondary-color: #fc0202;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --accent-color: #79abdd;
 }
 
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #1a1a1a;
     color: var(--light-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-/* --- HEADER & FOOTER (NOVOS ESTILOS) --- */
+main {
+    flex: 1;
+}
+
 header, footer {
-    background-color: var(--primary-color); /* Fundo azul principal */
+    background-color: var(--primary-color);
 }
 
-/* Garante que a barra de navegação dentro do header também seja azul */
 header .navbar {
     background-color: var(--primary-color) !important;
 }
 
-/* --- NAVBAR --- */
 .navbar-brand h1 {
     font-family: 'Oswald', sans-serif;
     letter-spacing: 2px;
     color: var(--light-color);
 }
 
-/* Links da navegação */
 .navbar .nav-link {
-    color: var(--accent-color); /* Links em azul claro */
+    color: var(--accent-color);
     transition: color 0.3s ease;
 }
 
 .navbar .nav-link:hover,
 .navbar .nav-link.active {
-    color: var(--light-color); /* Links ficam brancos no hover ou ativos */
+    color: var(--light-color);
 }
 
-/* Botão de Orçamento com o novo vermelho */
 .navbar .btn-outline-danger {
     color: var(--secondary-color);
     border-color: var(--secondary-color);
@@ -56,14 +57,11 @@ header .navbar {
     color: var(--light-color);
 }
 
-
-/* --- CAROUSEL --- */
 .c-item { height: 80vh; }
 .c-img { height: 100%; object-fit: cover; filter: brightness(0.6); }
 .carousel-caption { bottom: 20%; }
 .carousel-caption h2, .carousel-caption h3 { font-family: 'Oswald', sans-serif; text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8); }
 
-/* --- CARDS DE PRODUTO --- */
 .product-card { background-color: var(--dark-color); transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .product-card:hover { transform: translateY(-10px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5) !important; }
 .product-image-wrapper { overflow: hidden; border-radius: 1rem 1rem 0 0; }
@@ -72,22 +70,42 @@ header .navbar {
 .card-title { color: var(--light-color); transition: color 0.3s ease; }
 .product-card:hover .card-title { color: var(--primary-color); }
 
-/* --- PÁGINA DO CARRINHO --- */
 .cart-item { background-color: var(--dark-color); padding: 1rem; border-radius: 0.5rem; }
 
-/* --- ACCORDION --- */
 .accordion-button { background-color: #343a40; color: var(--light-color); }
 .accordion-button:not(.collapsed) { color: #fff; background-color: var(--primary-color); }
 .accordion-button:focus { box-shadow: none; border-color: rgba(0, 0, 0, .125); }
 
-/* --- BOTÕES E ELEMENTOS GERAIS --- */
 .btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); }
 .btn-primary:hover { background-color: #0044aa; border-color: #0044aa; }
 .text-primary { color: var(--primary-color) !important; }
 .progress-bar.bg-primary { background-color: var(--primary-color) !important; }
 
-/* --- GALERIA DO MODAL E PRODUTO --- */
 .thumbnail-container { cursor: pointer; }
 .thumbnail-container .img-thumbnail { width: 90px; height: 90px; object-fit: cover; border: 2px solid transparent; transition: border-color 0.3s ease; }
 .thumbnail-container .img-thumbnail:hover { border-color: var(--primary-color); }
 .thumbnail-container .img-thumbnail.active { border-color: var(--primary-color); box-shadow: 0 0 10px rgba(0, 85, 212, 0.5); }
+
+/* ÍCONE FLUTUANTE DO WHATSAPP */
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.1);
+    color: white;
+}

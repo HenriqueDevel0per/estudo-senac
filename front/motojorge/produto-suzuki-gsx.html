@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,24 +8,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="produto.css">
-
-<!--[if gte mso 9]><xml>
-<mso:CustomDocumentProperties>
-<mso:_ApprovalStatus msdt:dt="string">0</mso:_ApprovalStatus>
-<mso:_ApprovalAssignedTo msdt:dt="string"></mso:_ApprovalAssignedTo>
-<mso:_ApprovalRespondedBy msdt:dt="string"></mso:_ApprovalRespondedBy>
-</mso:CustomDocumentProperties>
-</xml><![endif]-->
 </head>
 <body>
     <div class="toast-container position-fixed bottom-0 end-0 p-3"><div id="liveToast" class="toast" role="alert"><div class="toast-header"><i class="bi bi-check-circle-fill me-2 text-success"></i><strong class="me-auto">Sucesso!</strong><button type="button" class="btn-close" data-bs-dismiss="toast"></button></div><div class="toast-body">Moto adicionada ao seu orçamento.</div></div></div>
-    <header class="bg-dark text-white"><nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-lg"><div class="container"><a class="navbar-brand fw-bold text-uppercase" href="index.html"><h1 class="h3 mb-0 me-2 text-warning">🏍️ MotoPerformance Garage 🏍️</h1></a><a href="carrinho.html" class="btn btn-outline-warning d-flex align-items-center ms-auto"><i class="bi bi-cart4 me-2"></i> Orçamento <span id="cart-count" class="badge bg-danger ms-2">0</span></a></div></nav></header>
-
+    <header class="bg-dark text-white"><nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-lg"><div class="container"><a class="navbar-brand fw-bold text-uppercase" href="index.html"><h1 class="h3 mb-0 me-2">🏍️ MotoPerformance Garage 🏍️</h1></a><a href="carrinho.html" class="btn btn-outline-danger d-flex align-items-center ms-auto"><i class="bi bi-cart4 me-2"></i> Orçamento <span id="cart-count" class="badge bg-danger ms-2">0</span></a></div></nav></header>
     <main class="container my-5" id="product-details" data-product-id="003" data-product-name="Suzuki GSX-S1000 2025" data-product-price="79600.00">
         <div class="row g-5">
             <div class="col-lg-7">
-                <div class="main-image-container mb-3"><img src="https://suzukimotos.com.br/storage/images/uploads/modelos/cores/2025-07-14-12-13-12-prata-site.png" class="img-fluid rounded-4 shadow" id="mainImage"></div>
-                 <div class="thumbnail-container d-flex gap-3">
+                <div class="main-image-container mb-3"><img src="https://cdn.powergo.ca/media/catalog/2024/42/e300b6aea59048e8b2972c32314e7a69_1024x768_webp/2025-suzuki-gsx-s1000a-mat-silver-0.webp" class="img-fluid rounded-4 shadow" id="mainImage"></div>
+                <div class="thumbnail-container d-flex gap-3 flex-wrap">
                     <img src="https://suzukimotos.com.br/storage/images/uploads/modelos/cores/2025-07-14-12-13-12-prata-site.png" class="img-thumbnail active" onclick="changeImage(this.src)">
                     <img src="https://suzukimotos.com.br/storage/images/uploads/modelos/cores/2025-07-14-12-14-20-preta-site.png" class="img-thumbnail" onclick="changeImage(this.src)">
                     <img src="https://suzukicycles.com/-/media/project/cycles/images/products/motorcycles/gsx-s1000a/2025/gallery/gsx-s1000m5_csx_diagonal_2400x1600.png?mh=500&mw=768&hash=241FFF2ABA0ADBEB2075F28073713EAB" class="img-thumbnail" onclick="changeImage(this.src)">
@@ -36,17 +27,17 @@
                 <p class="fs-5 text-light-50 mb-3">Street Fighter / Super Sport</p>
                 <div class="price-tag mb-4"><span class="fs-2 fw-bold text-success">R$ 79.600,00</span></div>
                 <div class="d-grid gap-2 mt-4">
-                    <button id="addToCartBtn" class="btn btn-warning btn-lg fw-bold text-uppercase"><span class="spinner-border spinner-border-sm d-none"></span><i class="bi bi-file-text me-2"></i><span class="btn-text">Adicionar ao Orçamento</span></button>
+                    <button id="addToCartBtn" class="btn btn-primary btn-lg fw-bold text-uppercase"><span class="spinner-border spinner-border-sm d-none"></span><i class="bi bi-file-text me-2"></i><span class="btn-text">Adicionar ao Orçamento</span></button>
                     <button class="btn btn-outline-light btn-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="Salvar para ver depois"><i class="bi bi-heart me-2"></i>Favoritar</button>
                 </div>
-                <div class="accordion accordion-flush mt-4" id="productInfoAccordion">
-                    <div class="accordion-item bg-transparent text-white"><h2 class="accordion-header"><button class="accordion-button bg-dark text-white" data-bs-toggle="collapse" data-bs-target="#collapseOne">Motor</button></h2><div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#productInfoAccordion"><div class="accordion-body"><strong>Tipo:</strong> 4 tempos, DOHC, 4 cilindros em linha, refrigeração líquida<br><strong>Cilindrada:</strong> 999 cm³<br><strong>Potência Máxima:</strong> 152 cv a 11.000 rpm<br><strong>Torque Máximo:</strong> 10,8 kgf.m a 9.250 rpm</div></div></div>
-                    <div class="accordion-item bg-transparent text-white"><h2 class="accordion-header"><button class="accordion-button collapsed bg-dark text-white" data-bs-toggle="collapse" data-bs-target="#collapseTwo">Chassi e Dimensões</button></h2><div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#productInfoAccordion"><div class="accordion-body"><strong>Chassi:</strong> Quadro de dupla viga de alumínio<br><strong>Suspensão Dianteira:</strong> Garfo telescópico invertido KYB<br><strong>Peso:</strong> 214 kg</div></div></div>
+                 <div class="mt-4 p-3 rounded" style="background-color: var(--dark-color);"><h5 class="text-light">Simular Parcelamento</h5><div class="input-group mb-3"><select class="form-select" id="installments-select"><option value="1">PIX / À vista (5% OFF)</option><option value="12">12x sem juros</option><option value="18" selected>18x sem juros</option><option value="24">24x com juros</option><option value="36">36x com juros</option><option value="48">48x com juros</option></select><button class="btn btn-primary" onclick="simulateInstallments()">Simular</button></div><div id="simulation-result" class="text-light"></div></div>
+                <div class="accordion accordion-flush mt-2" id="productInfoAccordion">
+                    <div class="accordion-item bg-transparent text-white"><h2 class="accordion-header"><button class="accordion-button bg-dark text-white" data-bs-toggle="collapse" data-bs-target="#collapseOne">Motor</button></h2><div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#productInfoAccordion"><div class="accordion-body"><strong>Tipo:</strong> 4 tempos, DOHC, 4 cilindros<br><strong>Cilindrada:</strong> 999 cm³<br><strong>Potência Máxima:</strong> 152 cv</div></div></div>
+                    <div class="accordion-item bg-transparent text-white"><h2 class="accordion-header"><button class="accordion-button collapsed bg-dark text-white" data-bs-toggle="collapse" data-bs-target="#collapseTwo">Chassi</button></h2><div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#productInfoAccordion"><div class="accordion-body"><strong>Chassi:</strong> Quadro de dupla viga de alumínio<br><strong>Peso:</strong> 214 kg</div></div></div>
                 </div>
             </div>
         </div>
     </main>
-
     <footer class="bg-dark text-white text-center py-4 mt-5"><div class="container"><p class="mb-0">&copy; 2025 MotoPerformance Garage. Todos os direitos reservados.</p></div></footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="cart.js"></script>
