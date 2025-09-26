@@ -1,0 +1,41 @@
+/* produto.css */
+
+.main-image-container img,
+.main-image-container video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.thumbnail-container {
+    cursor: pointer;
+}
+
+.thumbnail-container .img-thumbnail {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.thumbnail-container .img-thumbnail:hover {
+    border-color: var(--primary-color);
+}
+
+.thumbnail-container .img-thumbnail.active {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+}
+
+/* Estilo para botões de tamanho, se aplicável a equipamentos */
+.size-btn {
+    width: 60px;
+    font-weight: 600;
+}
+
+.size-btn.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #212529;
+}

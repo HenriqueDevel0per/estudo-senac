@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yamaha MT-09 2024 - MotoPerformance Garage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="produto.css">
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_ApprovalStatus msdt:dt="string">0</mso:_ApprovalStatus>
+<mso:_ApprovalAssignedTo msdt:dt="string"></mso:_ApprovalAssignedTo>
+<mso:_ApprovalRespondedBy msdt:dt="string"></mso:_ApprovalRespondedBy>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert"><div class="toast-header"><i class="bi bi-check-circle-fill me-2 text-success"></i><strong class="me-auto">Sucesso!</strong><button type="button" class="btn-close" data-bs-dismiss="toast"></button></div><div class="toast-body">Moto adicionada ao seu orçamento.</div></div>
+    </div>
+
+    <header class="bg-dark text-white"><nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-lg"><div class="container"><a class="navbar-brand fw-bold text-uppercase" href="index.html"><h1 class="h3 mb-0 me-2 text-warning">🏍️ MotoPerformance Garage 🏍️</h1></a><a href="carrinho.html" class="btn btn-outline-warning d-flex align-items-center ms-auto"><i class="bi bi-cart4 me-2"></i> Orçamento <span id="cart-count" class="badge bg-danger ms-2">0</span></a></div></nav></header>
+
+    <main class="container my-5" id="product-details" data-product-id="001" data-product-name="Yamaha MT-09 2024" data-product-price="59990.00">
+        <div class="row g-5">
+            <div class="col-lg-7">
+                <div class="main-image-container mb-3">
+                    <img src="https://cdn2.yamaha-motor.eu/prod/product-assets/2025/MT09AS/2025-Yamaha-MT09AS-EU-Icon_Blue-Studio-002-03.jpg" class="img-fluid rounded-4 shadow" id="mainImage">
+                </div>
+                <div class="thumbnail-container d-flex gap-3">
+                    <img src="https://cdn2.yamaha-motor.eu/prod/product-assets/2025/MT09AS/2025-Yamaha-MT09AS-EU-Icon_Blue-Studio-002-03.jpg" class="img-thumbnail active" onclick="changeMedia(this, 'image')">
+                    <img src="https://cdn2.yamaha-motor.eu/prod/product-assets/2025/MT09AS/2025-Yamaha-MT09AS-EU-Icon_Blue-360-Degrees-001-03.jpg" class="img-thumbnail" onclick="changeMedia(this, 'image')">
+                    <img src="https://cdn2.yamaha-motor.eu/prod/product-assets/2025/MT09AS/2025-Yamaha-MT09AS-EU-Icon_Blue-Studio-005-03.jpg" class="img-thumbnail" onclick="changeMedia(this, 'image')">
+                    <div class="img-thumbnail" onclick="changeMedia(this, 'video')" data-video-id="TswsBnwUOz8">
+                        <i class="bi bi-play-circle-fill" style="font-size: 3rem; color: var(--primary-color);"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <h1 class="display-5 fw-bold text-light">Yamaha MT-09 2024</h1>
+                <p class="fs-5 text-light-50 mb-3">Hyper Naked / Master of Torque</p>
+                <div class="price-tag mb-4"><span class="fs-2 fw-bold text-success">R$ 59.990,00</span></div>
+                
+                <div class="d-grid gap-2 mt-4">
+                    <button id="addToCartBtn" class="btn btn-warning btn-lg fw-bold text-uppercase"><span class="spinner-border spinner-border-sm d-none"></span><i class="bi bi-file-text me-2"></i><span class="btn-text">Adicionar ao Orçamento</span></button>
+                    <button class="btn btn-outline-light btn-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="Salvar para ver depois"><i class="bi bi-heart me-2"></i>Favoritar</button>
+                </div>
+
+                <div class="accordion accordion-flush mt-4" id="productInfoAccordion">
+                    <div class="accordion-item bg-transparent text-white"><h2 class="accordion-header"><button class="accordion-button bg-dark text-white" data-bs-toggle="collapse" data-bs-target="#collapseOne">Motor</button></h2><div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#productInfoAccordion"><div class="accordion-body"><strong>Tipo:</strong> 4 tempos, DOHC, 3 cilindros, 12 válvulas, Refrigeração líquida<br><strong>Cilindrada:</strong> 889 cc<br><strong>Potência Máxima:</strong> 114 cv a 10.000 rpm<br><strong>Torque Máximo:</strong> 9,5 kgf.m a 8.500 rpm</div></div></div>
+                    <div class="accordion-item bg-transparent text-white"><h2 class="accordion-header"><button class="accordion-button collapsed bg-dark text-white" data-bs-toggle="collapse" data-bs-target="#collapseTwo">Chassi e Dimensões</button></h2><div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#productInfoAccordion"><div class="accordion-body"><strong>Chassi:</strong> Diamante<br><strong>Pneu Dianteiro:</strong> 120/70 ZR17M/C<br><strong>Pneu Traseiro:</strong> 180/55 ZR17M/C<br><strong>Peso Líquido:</strong> 193 kg</div></div></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4 mt-5"><div class="container"><p class="mb-0">&copy; 2025 MotoPerformance Garage. Todos os direitos reservados.</p></div></footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="cart.js"></script>
+    <script src="product-page.js"></script>
+</body>
+</html>
