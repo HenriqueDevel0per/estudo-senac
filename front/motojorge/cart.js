@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartIcon();
     if (document.getElementById('cart-content')) loadCartPage();
     setupQuickViewModal();
-    // Ativa os tooltips (como o do botão WhatsApp)
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 });
@@ -46,7 +45,7 @@ function loadCartPage() {
         cartContent.innerHTML = '<div class="text-center text-light"><h1>Seu orçamento está vazio.</h1><a href="index.html" class="btn btn-primary mt-3">Ver Motos</a></div>';
         return;
     }
-    cartContent.innerHTML = `<h1 class="display-4 text-light mb-4">Seu Orçamento</h1><div id="free-shipping-progress" class="mb-4"><p class="text-light text-center mb-1" id="progress-text"></p><div class="progress" style="height: 20px;"><div id="progress-bar" class="progress-bar bg-primary" role="progressbar"></div></div></div><div id="cart-items"></div><div class="row mt-5 justify-content-end"><div class="col-md-6"><div id="shipping-section"><label for="cep-code" class="form-label text-light">Simular Frete e Prazo:</label><div class="input-group"><input type="text" class="form-control" id="cep-code" placeholder="Digite seu CEP"><button class="btn btn-primary" type="button" onclick="calculateShipping()">Simular</button></div><div id="shipping-options" class="mt-3"></div></div></div><div class="col-md-6"><div id="cart-total" class="text-end"></div></div></div><div id="checkout-button-container" class="text-end mt-4"></div>`;
+    cartContent.innerHTML = `<h1 class="display-4 text-light mb-4">Seu Orçamento</h1><div id="free-shipping-progress" class="mb-4"><p class="text-light text-center mb-1" id="progress-text"></p><div class="progress" style="height: 20px;"><div id="progress-bar" class="progress-bar bg-primary" role="progressbar"></div></div></div><div id="cart-items"></div><div class="row mt-5 justify-content-end"><div class="col-md-6"></div><div class="col-md-6"><div id="cart-total" class="text-end"></div></div></div><div id="checkout-button-container" class="text-end mt-4"></div>`;
     const cartItemsContainer = document.getElementById('cart-items');
     let subtotal = 0;
     cart.forEach((item, index) => {
@@ -56,16 +55,11 @@ function loadCartPage() {
     document.getElementById('checkout-button-container').innerHTML = `<a href="checkout.html" class="btn btn-primary btn-lg">Finalizar Compra</a>`;
     calculateTotals(subtotal);
     updateProgressBar(subtotal);
-    if(localStorage.getItem('cep')) calculateShipping(false);
 }
 
 function calculateTotals(subtotal) {
-    let shippingInfo = JSON.parse(localStorage.getItem('shipping'));
-    let shippingCost = shippingInfo ? shippingInfo.price : 0;
     let totalHTML = `<h4 class="text-light">Subtotal: R$ ${subtotal.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</h4>`;
-    if (shippingInfo) totalHTML += `<h5 class="text-light">Frete: R$ ${shippingCost.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</h5>`;
-    const finalTotal = subtotal + shippingCost;
-    totalHTML += `<hr class="text-light"><h2 class="text-light mt-2">Total: <span class="text-primary">R$ ${finalTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</span></h2>`;
+    totalHTML += `<hr class="text-light"><h2 class="text-light mt-2">Total: <span class="text-primary">R$ ${subtotal.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</span></h2>`;
     document.getElementById('cart-total').innerHTML = totalHTML;
 }
 
@@ -83,47 +77,6 @@ function updateProgressBar(subtotal) {
         progressText.textContent = `Faltam R$ ${remaining.toLocaleString('pt-BR', {minimumFractionDigits: 2})} para ganhar um capacete!`;
         progressBar.classList.remove('bg-success');
     }
-}
-
-function getRegionByCep(cep) {
-    const cepNum = parseInt(cep.substring(0, 5));
-    if (cepNum >= 1000 && cepNum <= 39999) return 'sudeste';
-    if (cepNum >= 40000 && cepNum <= 65999) return 'nordeste';
-    if (cepNum >= 80000 && cepNum <= 99999) return 'sul';
-    if ((cepNum >= 66000 && cepNum <= 69999) || (cepNum >= 76800 && cepNum <= 77999)) return 'norte';
-    if ((cepNum >= 70000 && cepNum <= 76799) || (cepNum >= 78000 && cepNum <= 79999)) return 'centro-oeste';
-    return 'desconhecida';
-}
-
-function calculateShipping(showAlert = true) {
-    const cep = document.getElementById('cep-code').value.replace(/\D/g, '');
-    const shippingOptionsDiv = document.getElementById('shipping-options');
-    if (cep.length !== 8) { if (showAlert) alert('CEP inválido.'); return; }
-    localStorage.setItem('cep', cep);
-    const region = getRegionByCep(cep);
-    let options = [];
-    if (document.getElementById('progress-bar').classList.contains('bg-success')) { options.push({ name: 'Frete Grátis (Brinde)', price: 0, days: 'Até 10 dias' }); }
-    else {
-        switch (region) {
-            case 'sul': options.push({ name: 'SEDEX', price: 39.90, days: 'Até 5 dias' }, { name: 'TX Courrier', price: 23.90, days: 'Até 5 dias' }); break;
-            case 'sudeste': options.push({ name: 'SEDEX', price: 20.00, days: 'Até 3 dias' }, { name: 'TX Courrier', price: 17.35, days: 'Até 3 dias' }); break;
-            case 'norte': case 'nordeste': options.push({ name: 'SEDEX', price: 48.00, days: 'Até 10 dias' }, { name: 'TX Courrier', price: 32.31, days: 'Até 10 dias' }); break;
-            case 'centro-oeste': options.push({ name: 'SEDEX', price: 24.99, days: 'Até 5 dias' }, { name: 'TX Courrier', price: 18.43, days: 'Até 5 dias' }); break;
-            default: shippingOptionsDiv.innerHTML = '<p class="text-danger">Região não atendida.</p>'; return;
-        }
-    }
-    let html = '<h5 class="text-light mt-2">Escolha o frete:</h5>';
-    const selectedShipping = JSON.parse(localStorage.getItem('shipping'));
-    options.forEach(opt => {
-        const isChecked = selectedShipping && selectedShipping.name === opt.name ? 'checked' : '';
-        html += `<div class="form-check"><input class="form-check-input" type="radio" name="shippingOption" id="${opt.name}" onclick="selectShipping(${opt.price}, '${opt.name}')" ${isChecked}><label class="form-check-label text-light" for="${opt.name}">${opt.name} - R$ ${opt.price.toFixed(2)} (${opt.days})</label></div>`;
-    });
-    shippingOptionsDiv.innerHTML = html;
-}
-
-function selectShipping(price, name) {
-    localStorage.setItem('shipping', JSON.stringify({ name, price }));
-    loadCartPage();
 }
 
 function setupQuickViewModal() {

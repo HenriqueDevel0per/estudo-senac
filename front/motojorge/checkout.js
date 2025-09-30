@@ -74,7 +74,7 @@ function updatePaymentView() {
 function generateCreditCardForm(cardNumber, amount = 0, isReadOnly = false, label = 'Valor a cobrar') {
     let installmentOptions = '';
     for (let i = 1; i <= 18; i++) {
-        const installmentValue = amount / i;
+        const installmentValue = amount > 0 ? amount / i : 0;
         installmentOptions += `<option value="${i}">${i}x de R$ ${installmentValue.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</option>`;
     }
     return `
@@ -98,34 +98,24 @@ function generateCreditCardForm(cardNumber, amount = 0, isReadOnly = false, labe
 
 function updateSplitPayment() {
     const selectedMethod = document.getElementById('payment-method').value;
-    
     if (selectedMethod === 'credit2') {
         const card1Input = document.getElementById('card-amount-1');
         const card2Input = document.getElementById('card-amount-2');
         if (!card1Input || !card2Input) return;
-
         let amount1 = parseFloat(card1Input.value) || 0;
-        if (amount1 > orderSubtotal) amount1 = orderSubtotal;
-        
+        if (amount1 > orderSubtotal) { amount1 = orderSubtotal; card1Input.value = amount1.toFixed(2); }
         const remaining = orderSubtotal - amount1;
         card2Input.value = remaining.toFixed(2);
-        
-        // Recalcula parcelas para ambos os cartões
         updateInstallmentOptions(1, amount1);
         updateInstallmentOptions(2, remaining);
-
     } else if (selectedMethod === 'pix_credit') {
         const pixInput = document.getElementById('pix-amount');
         const card1Input = document.getElementById('card-amount-1');
         if (!pixInput || !card1Input) return;
-
         let amountPix = parseFloat(pixInput.value) || 0;
-        if (amountPix > orderSubtotal) amountPix = orderSubtotal;
-
+        if (amountPix > orderSubtotal) { amountPix = orderSubtotal; pixInput.value = amountPix.toFixed(2); }
         const remaining = orderSubtotal - amountPix;
         card1Input.value = remaining.toFixed(2);
-        
-        // Recalcula parcelas para o cartão
         updateInstallmentOptions(1, remaining);
     }
 }
@@ -133,10 +123,9 @@ function updateSplitPayment() {
 function updateInstallmentOptions(cardNumber, amount) {
     const select = document.getElementById(`installments-card-${cardNumber}`);
     if (!select) return;
-
     let options = '';
     for (let i = 1; i <= 18; i++) {
-        const installmentValue = amount / i;
+        const installmentValue = amount > 0 ? amount / i : 0;
         options += `<option value="${i}">${i}x de R$ ${installmentValue.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</option>`;
     }
     select.innerHTML = options;
