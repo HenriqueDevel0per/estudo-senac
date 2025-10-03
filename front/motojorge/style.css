@@ -65,8 +65,8 @@ header .navbar {
 .product-card { background-color: var(--dark-color); transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .product-card:hover { transform: translateY(-10px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5) !important; }
 .product-image-wrapper { overflow: hidden; border-radius: 1rem 1rem 0 0; }
-.product-image { height: 280px; object-fit: cover; transition: transform 0.5s ease; }
-.product-card:hover .product-image { transform: scale(1.05); }
+.product-image { height: 280px; object-fit: cover; transition: transform 0.9s ease; }
+.product-card:hover .product-image { transform: scale(1.40); }
 .card-title { color: var(--light-color); transition: color 0.3s ease; }
 .product-card:hover .card-title { color: var(--primary-color); }
 
