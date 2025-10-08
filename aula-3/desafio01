@@ -1,0 +1,8 @@
+lista = [1,2,3,4,5]
+print(lista[4])
+
+lista.append(60)
+print(lista)
+
+lista.remove(1)
+print(len(lista))

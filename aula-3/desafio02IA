@@ -1,0 +1,36 @@
+
+nomes_alunos = []
+notas_alunos = []
+
+num_alunos = int(input("insira o numero de alunos a serem cadastrados : "))
+
+print("--- Cadastro de Notas ---")
+
+for i in range(num_alunos):
+    nome = input(f"Digite o nome do {i+1}º aluno: ")
+    nomes_alunos.append(nome)
+
+    nota = float(input(f"Digite a nota de {nome} (entre 0 e 10): "))
+    notas_alunos.append(nota)
+
+
+media_geral = sum(notas_alunos) / len(notas_alunos)
+
+maior_nota = max(notas_alunos)
+
+indice_maior_nota = notas_alunos.index(maior_nota)
+
+nome_maior_nota = nomes_alunos[indice_maior_nota]
+
+menor_nota = min(notas_alunos)
+
+indice_menor_nota = notas_alunos.index(menor_nota)
+
+nome_menor_nota = nomes_alunos[indice_menor_nota]
+
+
+# Exibição dos resultados
+print("\n--- Resultados da Turma ---")
+print(f"A média geral das notas foi: {media_geral:.2f}")
+print(f"Aluno com a maior nota: {nome_maior_nota} (Nota: {maior_nota})")
+print(f"Aluno com a menor nota: {nome_menor_nota} (Nota: {menor_nota})")

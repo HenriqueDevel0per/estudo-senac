@@ -1,0 +1,9 @@
+lista_nomes = []
+lista_notas = []
+
+for i in range(2):
+    lista_nomes += input("insira seu nome : ")
+    lista_notas += int(input(f"insira a nota de {lista_nomes} :"))
+
+
+print(lista_notas)
